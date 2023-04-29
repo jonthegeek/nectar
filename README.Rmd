@@ -1,0 +1,38 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# nectar
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+An opinionated framework for use within api-wrapping packages.
+
+## Installation
+
+You can install the development version of nectar from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("r4ds/nectar")
+```
+
+## Usage
+
+Add usage information and examples here.
+
+## Code of Conduct
+
+Please note that the nectar project is released with a [Contributor Code of Conduct](https://r4ds.github.io/nectar/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
