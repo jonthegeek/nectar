@@ -7,11 +7,12 @@ Authors@R:
 Description: An opinionated framework for use within api-wrapping
     packages.
 License: MIT + file LICENSE
+URL: https://github.com/r4ds/nectar, https://r4ds.github.io/nectar/
+BugReports: https://github.com/r4ds/nectar/issues
 Suggests: 
+    covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-URL: https://github.com/r4ds/nectar
-BugReports: https://github.com/r4ds/nectar/issues
