@@ -7,8 +7,8 @@ Authors@R:
 Description: An opinionated framework for use within api-wrapping
     packages.
 License: MIT + file LICENSE
-URL: https://github.com/r4ds/nectar, https://r4ds.github.io/nectar/
-BugReports: https://github.com/r4ds/nectar/issues
+URL: https://github.com/jonthegeek/nectar, https://jonthegeek.github.io/nectar/
+BugReports: https://github.com/jonthegeek/nectar/issues
 Suggests: 
     covr,
     testthat (>= 3.0.0)
