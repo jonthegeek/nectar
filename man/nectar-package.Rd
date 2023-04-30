@@ -11,9 +11,9 @@ An opinionated framework for use within api-wrapping packages.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/r4ds/nectar}
-  \item \url{https://r4ds.github.io/nectar/}
-  \item Report bugs at \url{https://github.com/r4ds/nectar/issues}
+  \item \url{https://github.com/jonthegeek/nectar}
+  \item \url{https://jonthegeek.github.io/nectar/}
+  \item Report bugs at \url{https://github.com/jonthegeek/nectar/issues}
 }
 
 }
