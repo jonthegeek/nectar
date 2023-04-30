@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://r4ds.github.io/nectar/404.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/SUPPORT.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/index.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://r4ds.github.io/nectar/reference/nectar-package.html</loc>
+  </url>
+</urlset>
