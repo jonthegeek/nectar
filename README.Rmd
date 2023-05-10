@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# nectar
+# nectar <a href="https://jonthegeek.github.io/nectar/"><img src="man/figures/logo.svg" align="right" height="424" /></a>
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jonthegeek/nectar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jonthegeek/nectar/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-An opinionated framework for use within api-wrapping packages.
+An opinionated framework for use within api-wrapping R packages.
 
 ## Installation
 

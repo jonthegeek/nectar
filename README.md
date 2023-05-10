@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nectar
+# nectar <a href="https://jonthegeek.github.io/nectar/"><img src="man/figures/logo.svg" align="right" height="424" /></a>
 
 <!-- badges: start -->
 
@@ -14,7 +14,7 @@ coverage](https://codecov.io/gh/jonthegeek/nectar/branch/main/graph/badge.svg)](
 [![R-CMD-check](https://github.com/jonthegeek/nectar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jonthegeek/nectar/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-An opinionated framework for use within api-wrapping packages.
+An opinionated framework for use within api-wrapping R packages.
 
 ## Installation
 
