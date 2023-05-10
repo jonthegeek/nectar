@@ -2,7 +2,7 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2023-04-30T01:30Z
+last_built: 2023-05-10T14:02Z
 urls:
   reference: https://jonthegeek.github.io/nectar/reference
   article: https://jonthegeek.github.io/nectar/articles
