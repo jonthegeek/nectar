@@ -1,16 +1,14 @@
 Package: nectar
 Title: A Framework for Web API Packages
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Jon", "Harmon", , "jonthegeek@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0003-4781-4346")),
     person("R Consortium", role = "fnd")
   )
-Description: An opinionated framework for use within api-wrapping R
-    packages.
+Description: An opinionated framework for use within api-wrapping R packages.
 License: MIT + file LICENSE
-URL: https://jonthegeek.github.io/nectar/,
-    https://github.com/jonthegeek/nectar
+URL: https://jonthegeek.github.io/nectar/, https://github.com/jonthegeek/nectar
 BugReports: https://github.com/jonthegeek/nectar/issues
 Suggests: 
     covr,
@@ -19,3 +17,12 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports: 
+    cli,
+    fs,
+    httr2,
+    jsonlite,
+    purrr,
+    rlang,
+    snakecase,
+    utils

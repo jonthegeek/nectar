@@ -6,19 +6,24 @@
 \alias{nectar-package}
 \title{nectar: A Framework for Web API Packages}
 \description{
-An opinionated framework for use within api-wrapping packages.
+An opinionated framework for use within api-wrapping R packages.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/jonthegeek/nectar}
   \item \url{https://jonthegeek.github.io/nectar/}
+  \item \url{https://github.com/jonthegeek/nectar}
   \item Report bugs at \url{https://github.com/jonthegeek/nectar/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Jon Harmon \email{jonthegeek@gmail.com} (\href{https://orcid.org/0000-0003-4781-4346}{ORCID})
+\strong{Maintainer}: Jon Harmon \email{jonthegeek@gmail.com} (\href{https://orcid.org/0000-0003-4781-4346}{ORCID}) [copyright holder]
+
+Other contributors:
+\itemize{
+  \item R Consortium [funder]
+}
 
 }
 \keyword{internal}
