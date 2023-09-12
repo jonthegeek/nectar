@@ -13,12 +13,13 @@ call_api(
   method = NULL,
   api_case = c("snake_case", "camelCase", "UpperCamel", "SCREAMING_SNAKE", "alllower",
     "ALLUPPER", "lowerUPPER", "UPPERlower", "Sentence case", "Title Case"),
-  api_authenticator = NULL,
-  api_authenticator_args = list(),
-  api_resp_parser = NULL,
-  api_resp_parser_args = list(),
-  api_error_handler = NULL,
-  api_error_handler_args = list()
+  authenticator = NULL,
+  authenticator_args = list(),
+  response_parser = NULL,
+  response_parser_args = list(),
+  error_handler = NULL,
+  error_handler_args = list(),
+  user_agent = "nectar (https://jonthegeek.github.io/nectar/)"
 )
 }
 \arguments{
@@ -46,23 +47,27 @@ Case is ignored.}
 \item{api_case}{The case standard used by this API. The possible values are
 self-descriptive. Defaults to "snake_case".}
 
-\item{api_authenticator}{An API-specific authenticator function. More details
-to come in a future update to this package.}
+\item{authenticator}{An authenticator function. More details to come in a
+future update to this package.}
 
-\item{api_authenticator_args}{Arguments for the API authenticator function.}
+\item{authenticator_args}{Arguments for the authenticator function.}
 
-\item{api_resp_parser}{An API-specific response parser function. More details
-to come in a future update to this package.}
+\item{response_parser}{A response parser function. More details to come in a
+future update to this package.}
 
-\item{api_resp_parser_args}{Arguments for the API response parser function.}
+\item{response_parser_args}{Arguments for the response parser function.}
 
-\item{api_error_handler}{An API-specific error handler function. More details
-to come in a future update to this package.}
+\item{error_handler}{An error handler function. More details to come in a
+future update to this package.}
 
-\item{api_error_handler_args}{Arguments for the API error handler function.}
+\item{error_handler_args}{Arguments for the error handler function.}
+
+\item{user_agent}{A string to identify where this request is coming from.
+It's polite to set the user agent to identify your package, such as
+"MyPackage (https://mypackage.com)".}
 }
 \value{
-The response from the API, parsed by the \code{api_resp_parser}.
+The response from the API, parsed by the \code{response_parser}.
 }
 \description{
 This function implements an opinionated framework for making API calls. It is
