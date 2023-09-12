@@ -6,13 +6,13 @@
 \usage{
 .prepare_request(
   base_url,
-  endpoint,
+  endpoint = NULL,
   query = NULL,
   body = NULL,
   method = NULL,
-  api_case = c("snake_case", "camelCase", "UpperCamel", "SCREAMING_SNAKE", "alllower",
-    "ALLUPPER", "lowerUPPER", "UPPERlower", "Sentence case", "Title Case"),
-  mime_type = NULL
+  api_case = NULL,
+  mime_type = NULL,
+  user_agent = NULL
 )
 }
 \arguments{
@@ -39,6 +39,10 @@ self-descriptive. Defaults to "snake_case".}
 \item{mime_type}{A character scalar indicating the mime type of any files
 present in the body. Some APIs allow you to leave this as NULL for them to
 guess.}
+
+\item{user_agent}{A string to identify where this request is coming from.
+It's polite to set the user agent to identify your package, such as
+"MyPackage (https://mypackage.com)".}
 }
 \value{
 An \code{\link[httr2:request]{httr2::request()}} object.

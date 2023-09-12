@@ -6,19 +6,15 @@
 \usage{
 call_api(
   base_url,
-  endpoint,
+  endpoint = NULL,
   query = NULL,
   body = NULL,
   mime_type = NULL,
   method = NULL,
   api_case = c("snake_case", "camelCase", "UpperCamel", "SCREAMING_SNAKE", "alllower",
     "ALLUPPER", "lowerUPPER", "UPPERlower", "Sentence case", "Title Case"),
-  authenticator = NULL,
-  authenticator_args = list(),
-  response_parser = NULL,
+  response_parser = httr2::resp_body_json,
   response_parser_args = list(),
-  error_handler = NULL,
-  error_handler_args = list(),
   user_agent = "nectar (https://jonthegeek.github.io/nectar/)"
 )
 }
@@ -47,24 +43,24 @@ Case is ignored.}
 \item{api_case}{The case standard used by this API. The possible values are
 self-descriptive. Defaults to "snake_case".}
 
-\item{authenticator}{An authenticator function. More details to come in a
-future update to this package.}
-
-\item{authenticator_args}{Arguments for the authenticator function.}
-
 \item{response_parser}{A response parser function. More details to come in a
 future update to this package.}
 
 \item{response_parser_args}{Arguments for the response parser function.}
 
+\item{user_agent}{A string to identify where this request is coming from.
+It's polite to set the user agent to identify your package, such as
+"MyPackage (https://mypackage.com)".}
+
+\item{authenticator}{An authenticator function. More details to come in a
+future update to this package.}
+
+\item{authenticator_args}{Arguments for the authenticator function.}
+
 \item{error_handler}{An error handler function. More details to come in a
 future update to this package.}
 
 \item{error_handler_args}{Arguments for the error handler function.}
-
-\item{user_agent}{A string to identify where this request is coming from.
-It's polite to set the user agent to identify your package, such as
-"MyPackage (https://mypackage.com)".}
 }
 \value{
 The response from the API, parsed by the \code{response_parser}.

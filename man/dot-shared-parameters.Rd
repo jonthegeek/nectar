@@ -35,6 +35,10 @@ the request.}
 
 \item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
 
+\item{user_agent}{A string to identify where this request is coming from.
+It's polite to set the user agent to identify your package, such as
+"MyPackage (https://mypackage.com)".}
+
 \item{x}{The object to update.}
 }
 \description{

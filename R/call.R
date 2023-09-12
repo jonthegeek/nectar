@@ -14,14 +14,11 @@
 #' @param error_handler An error handler function. More details to come in a
 #'   future update to this package.
 #' @param error_handler_args Arguments for the error handler function.
-#' @param user_agent A string to identify where this request is coming from.
-#'   It's polite to set the user agent to identify your package, such as
-#'   "MyPackage (https://mypackage.com)".
 #'
 #' @return The response from the API, parsed by the `response_parser`.
 #' @export
 call_api <- function(base_url,
-                     endpoint,
+                     endpoint = NULL,
                      query = NULL,
                      body = NULL,
                      mime_type = NULL,
@@ -32,12 +29,8 @@ call_api <- function(base_url,
                        "ALLUPPER", "lowerUPPER", "UPPERlower",
                        "Sentence case", "Title Case"
                      ),
-                     authenticator = NULL,
-                     authenticator_args = list(),
-                     response_parser = NULL,
+                     response_parser = httr2::resp_body_json,
                      response_parser_args = list(),
-                     error_handler = NULL,
-                     error_handler_args = list(),
                      user_agent = "nectar (https://jonthegeek.github.io/nectar/)") {
   req <- .prepare_request(
     base_url,
@@ -46,19 +39,12 @@ call_api <- function(base_url,
     body,
     method,
     api_case,
-    mime_type
+    mime_type,
+    user_agent
   )
-  req <- httr2::req_user_agent(req, user_agent)
-  if (!rlang::is_null(authenticator)) {
-    req <- rlang::inject(authenticator(req, !!!authenticator_args))
-  }
-  if (!rlang::is_null(error_handler)) {
-    req <- rlang::inject(error_handler(req, !!!error_handler_args))
-  }
-  # TODO: Probably allow them to pass in a `path` argument for req_perform.
-  resp <- httr2::req_perform(req)
+  resp <- req_perform(req)
 
-  if (!rlang::is_null(response_parser)) {
+  if (length(response_parser)) {
     resp <- rlang::inject(response_parser(resp, !!!response_parser_args))
   }
   return(resp)

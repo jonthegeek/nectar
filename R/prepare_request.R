@@ -5,27 +5,31 @@
 #' @inherit .shared-request return
 #' @keywords internal
 .prepare_request <- function(base_url,
-                             endpoint,
+                             endpoint = NULL,
                              query = NULL,
                              body = NULL,
                              method = NULL,
-                             api_case = c(
-                               "snake_case", "camelCase", "UpperCamel",
-                               "SCREAMING_SNAKE", "alllower",
-                               "ALLUPPER", "lowerUPPER", "UPPERlower",
-                               "Sentence case", "Title Case"
-                             ),
-                             mime_type = NULL) {
-  # Path.
+                             api_case = NULL,
+                             mime_type = NULL,
+                             user_agent = NULL) {
   req <- httr2::request(base_url)
-  endpoint <- rlang::inject(glue::glue(!!!endpoint))
-  req <- httr2::req_url_path_append(req, endpoint)
-  # TODO: If query contains an element with length > 1, to_csv_scalar it (after
-  # smushing it). Basically do a lot of what I do to bodies.
-  req <- httr2::req_url_query(req, !!!query)
+
+  if (length(endpoint)) {
+    endpoint <- rlang::inject(glue::glue(!!!endpoint))
+    req <- httr2::req_url_path_append(req, endpoint)
+  }
+
+  if (length(query)) {
+    # TODO: If query contains an element with length > 1, to_csv_scalar it (after
+    # smushing it). Basically do a lot of what I do to bodies.
+    req <- httr2::req_url_query(req, !!!query)
+  }
   req <- req_body_auto(req, body, api_case, mime_type)
-  if (!rlang::is_null(method)) {
+  if (length(method)) {
     req <- httr2::req_method(req, method)
+  }
+  if (length(user_agent)) {
+    req <- httr2::req_user_agent(req, user_agent)
   }
 
   return(req)

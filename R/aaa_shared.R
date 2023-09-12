@@ -23,6 +23,9 @@
 #' @param query An optional list of parameters to pass in the query portion of
 #'   the request.
 #' @param req An [httr2::request()] object.
+#' @param user_agent A string to identify where this request is coming from.
+#'   It's polite to set the user agent to identify your package, such as
+#'   "MyPackage (https://mypackage.com)".
 #' @param x The object to update.
 #'
 #' @name .shared-parameters
