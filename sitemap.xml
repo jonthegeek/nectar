@@ -25,9 +25,63 @@
     <loc>https://jonthegeek.github.io/nectar/index.html</loc>
   </url>
   <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/api_browse_oauth_app.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/api_client.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/call_api.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/compact_nested_list.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-add_body.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-compact_nested_list_impl.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-enforce_name_case_impl.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-oauth-parameters.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-prepare_body.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-prepare_body_part.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-prepare_request.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-shared-parameters.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-shared-request.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-to_lower_snakeless.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/dot-to_upper_snakeless.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/enforce_name_case.html</loc>
+  </url>
+  <url>
     <loc>https://jonthegeek.github.io/nectar/reference/index.html</loc>
   </url>
   <url>
     <loc>https://jonthegeek.github.io/nectar/reference/nectar-package.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/req_body_auto.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/nectar/reference/to_csv_scalar.html</loc>
   </url>
 </urlset>
