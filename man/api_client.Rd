@@ -23,5 +23,5 @@ An OAuth client: An S3 list with class \code{httr2_oauth_client}.
 This is a wrapper around \code{\link[httr2:oauth_client]{httr2::oauth_client()}} with stricter validation.
 }
 \examples{
-api_client("your_client_id", "your_client_secret", "https://example.com")
+# api_client("your_client_id", "your_client_secret", "https://example.com")
 }

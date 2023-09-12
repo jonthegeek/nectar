@@ -50,7 +50,7 @@ api_browse_oauth_app <- function(app_mgmt_url) {
 #' @inherit httr2::oauth_client return
 #' @export
 #' @examples
-#' api_client("your_client_id", "your_client_secret", "https://example.com")
+#' # api_client("your_client_id", "your_client_secret", "https://example.com")
 api_client <- function(client_id = "", client_secret = "", api_token_url) {
   # TODO: Update this to a general parameter checker. The whole idea is to make
   # sure the required parameters are set.
