@@ -19,7 +19,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     cli,
+    curl,
     fs,
+    glue,
     httr2,
     jsonlite,
     purrr,
