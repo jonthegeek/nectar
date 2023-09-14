@@ -14,7 +14,7 @@ around the req_ family of functions, such as httr2::request()."><meta property="
     
     <a class="navbar-brand me-2" href="../index.html">nectar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,19 +56,15 @@ around the <code>req_</code> family of functions, such as <code><a href="https:/
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">call_api</span><span class="op">(</span></span>
 <span>  <span class="va">base_url</span>,</span>
-<span>  <span class="va">endpoint</span>,</span>
+<span>  path <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  query <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  body <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mime_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  method <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  api_case <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"snake_case"</span>, <span class="st">"camelCase"</span>, <span class="st">"UpperCamel"</span>, <span class="st">"SCREAMING_SNAKE"</span>, <span class="st">"alllower"</span>,</span>
 <span>    <span class="st">"ALLUPPER"</span>, <span class="st">"lowerUPPER"</span>, <span class="st">"UPPERlower"</span>, <span class="st">"Sentence case"</span>, <span class="st">"Title Case"</span><span class="op">)</span>,</span>
-<span>  authenticator <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  authenticator_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  response_parser <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  response_parser <span class="op">=</span> <span class="fu">httr2</span><span class="fu">::</span><span class="va"><a href="https://httr2.r-lib.org/reference/resp_body_raw.html" class="external-link">resp_body_json</a></span>,</span>
 <span>  response_parser_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  error_handler <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  error_handler_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  user_agent <span class="op">=</span> <span class="st">"nectar (https://jonthegeek.github.io/nectar/)"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -81,8 +77,8 @@ In some cases there may be a family of base URLs, from which you will need
 to choose one.</p></dd>
 
 
-<dt>endpoint</dt>
-<dd><p>The path to an API endpoint. Optionally, a list with the path
+<dt>path</dt>
+<dd><p>The route to an API endpoint. Optionally, a list with the path
 plus variables to <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code> into the path.</p></dd>
 
 
@@ -113,31 +109,15 @@ Case is ignored.</p></dd>
 self-descriptive. Defaults to "snake_case".</p></dd>
 
 
-<dt>authenticator</dt>
-<dd><p>An authenticator function. More details to come in a
-future update to this package.</p></dd>
-
-
-<dt>authenticator_args</dt>
-<dd><p>Arguments for the authenticator function.</p></dd>
-
-
 <dt>response_parser</dt>
-<dd><p>A response parser function. More details to come in a
-future update to this package.</p></dd>
+<dd><p>A function to use to parse the server response.
+Defaults to <code><a href="https://httr2.r-lib.org/reference/resp_body_raw.html" class="external-link">httr2::resp_body_json()</a></code>, since JSON responses are common. Set
+this to <code>NULL</code> to return the raw response from <code><a href="https://httr2.r-lib.org/reference/req_perform.html" class="external-link">httr2::req_perform()</a></code>.</p></dd>
 
 
 <dt>response_parser_args</dt>
-<dd><p>Arguments for the response parser function.</p></dd>
-
-
-<dt>error_handler</dt>
-<dd><p>An error handler function. More details to come in a
-future update to this package.</p></dd>
-
-
-<dt>error_handler_args</dt>
-<dd><p>Arguments for the error handler function.</p></dd>
+<dd><p>An optional list of arguments to the
+<code>response_parser</code> function.</p></dd>
 
 
 <dt>user_agent</dt>
