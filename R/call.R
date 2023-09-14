@@ -18,7 +18,7 @@
 #' @return The response from the API, parsed by the `response_parser`.
 #' @export
 call_api <- function(base_url,
-                     endpoint = NULL,
+                     path = NULL,
                      query = NULL,
                      body = NULL,
                      mime_type = NULL,
@@ -34,7 +34,7 @@ call_api <- function(base_url,
                      user_agent = "nectar (https://jonthegeek.github.io/nectar/)") {
   req <- .prepare_request(
     base_url,
-    endpoint,
+    path,
     query,
     body,
     method,

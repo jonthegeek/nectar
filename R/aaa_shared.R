@@ -13,7 +13,7 @@
 #' @param case The case standard to apply. The possible values are
 #'   self-descriptive. Defaults to "snake_case".
 #' @param depth The current recursion depth.
-#' @param endpoint The path to an API endpoint. Optionally, a list with the path
+#' @param path The route to an API endpoint. Optionally, a list with the path
 #'   plus variables to [glue::glue()] into the path.
 #' @param method If the method is something other than GET or POST, supply it.
 #'   Case is ignored.

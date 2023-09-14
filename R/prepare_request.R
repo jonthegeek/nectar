@@ -5,7 +5,7 @@
 #' @inherit .shared-request return
 #' @keywords internal
 .prepare_request <- function(base_url,
-                             endpoint = NULL,
+                             path = NULL,
                              query = NULL,
                              body = NULL,
                              method = NULL,
@@ -14,9 +14,9 @@
                              user_agent = NULL) {
   req <- httr2::request(base_url)
 
-  if (length(endpoint)) {
-    endpoint <- rlang::inject(glue::glue(!!!endpoint))
-    req <- httr2::req_url_path_append(req, endpoint)
+  if (length(path)) {
+    path <- rlang::inject(glue::glue(!!!path))
+    req <- httr2::req_url_path_append(req, path)
   }
 
   if (length(query)) {

@@ -6,7 +6,7 @@
 \usage{
 .prepare_request(
   base_url,
-  endpoint = NULL,
+  path = NULL,
   query = NULL,
   body = NULL,
   method = NULL,
@@ -20,7 +20,7 @@
 In some cases there may be a family of base URLs, from which you will need
 to choose one.}
 
-\item{endpoint}{The path to an API endpoint. Optionally, a list with the path
+\item{path}{The route to an API endpoint. Optionally, a list with the path
 plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
 
 \item{query}{An optional list of parameters to pass in the query portion of
