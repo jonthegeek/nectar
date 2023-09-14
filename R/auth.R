@@ -75,27 +75,3 @@ api_client <- function(client_id = "", client_secret = "", api_token_url) {
     class = "missing_client_params"
   )
 }
-
-# api_req_authenticate <- function(request,
-#                                  client,
-#                                  scopes = NULL,
-#                                  cache_disk = api_option_cache_disk(client),
-#                                  cache_key = NULL,
-#                                  token = NULL,
-#                                  refresh_token = NULL) {
-#   # The idea of this function is to wrap the various oauth bits from httr2,
-#   # importantly allowing the user to supply a refresh token outside of a full
-#   # oauth token object ~automatically (via an environment variable).
-#
-#   # The hierarchy:
-#   # * If a valid oauth token object is provided, use it
-#   # * Check cache (if allowed), use that if token isn't expired
-#   # * If the refresh token is provided and works, use the resulting token
-#   # * If caching is allowed ... It really feels like all I'm doing is adding the
-#   #   ability to pass in a refresh token, check httr2 to see if it could be
-#   #   updated.
-# }
-
-# TODO: What, if anything, do I need to override from
-# httr2::req_oauth_auth_code()? Can I PR changes to httr2 to make it better in
-# non-interactive contexts?

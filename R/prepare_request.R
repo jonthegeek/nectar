@@ -20,8 +20,8 @@
   }
 
   if (length(query)) {
-    # TODO: If query contains an element with length > 1, to_csv_scalar it (after
-    # smushing it). Basically do a lot of what I do to bodies.
+    # TODO: If query contains an element with length > 1, to_csv_scalar it
+    # (after smushing it). Basically do a lot of what I do to bodies.
     req <- httr2::req_url_query(req, !!!query)
   }
   req <- req_body_auto(req, body, api_case, mime_type)
