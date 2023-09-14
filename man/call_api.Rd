@@ -43,24 +43,16 @@ Case is ignored.}
 \item{api_case}{The case standard used by this API. The possible values are
 self-descriptive. Defaults to "snake_case".}
 
-\item{response_parser}{A response parser function. More details to come in a
-future update to this package.}
+\item{response_parser}{A function to use to parse the server response.
+Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are common. Set
+this to \code{NULL} to return the raw response from \code{\link[httr2:req_perform]{httr2::req_perform()}}.}
 
-\item{response_parser_args}{Arguments for the response parser function.}
+\item{response_parser_args}{An optional list of arguments to the
+\code{response_parser} function.}
 
 \item{user_agent}{A string to identify where this request is coming from.
 It's polite to set the user agent to identify your package, such as
 "MyPackage (https://mypackage.com)".}
-
-\item{authenticator}{An authenticator function. More details to come in a
-future update to this package.}
-
-\item{authenticator_args}{Arguments for the authenticator function.}
-
-\item{error_handler}{An error handler function. More details to come in a
-future update to this package.}
-
-\item{error_handler_args}{Arguments for the error handler function.}
 }
 \value{
 The response from the API, parsed by the \code{response_parser}.

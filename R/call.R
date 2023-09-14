@@ -5,15 +5,11 @@
 #' around the `req_` family of functions, such as [httr2::request()].
 #'
 #' @inheritParams .shared-parameters
-#' @param authenticator An authenticator function. More details to come in a
-#'   future update to this package.
-#' @param authenticator_args Arguments for the authenticator function.
-#' @param response_parser A response parser function. More details to come in a
-#'   future update to this package.
-#' @param response_parser_args Arguments for the response parser function.
-#' @param error_handler An error handler function. More details to come in a
-#'   future update to this package.
-#' @param error_handler_args Arguments for the error handler function.
+#' @param response_parser A function to use to parse the server response.
+#'   Defaults to [httr2::resp_body_json()], since JSON responses are common. Set
+#'   this to `NULL` to return the raw response from [httr2::req_perform()].
+#' @param response_parser_args An optional list of arguments to the
+#'   `response_parser` function.
 #'
 #' @return The response from the API, parsed by the `response_parser`.
 #' @export
