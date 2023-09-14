@@ -6,19 +6,15 @@
 \usage{
 call_api(
   base_url,
-  endpoint,
+  path = NULL,
   query = NULL,
   body = NULL,
   mime_type = NULL,
   method = NULL,
   api_case = c("snake_case", "camelCase", "UpperCamel", "SCREAMING_SNAKE", "alllower",
     "ALLUPPER", "lowerUPPER", "UPPERlower", "Sentence case", "Title Case"),
-  authenticator = NULL,
-  authenticator_args = list(),
-  response_parser = NULL,
+  response_parser = httr2::resp_body_json,
   response_parser_args = list(),
-  error_handler = NULL,
-  error_handler_args = list(),
   user_agent = "nectar (https://jonthegeek.github.io/nectar/)"
 )
 }
@@ -27,7 +23,7 @@ call_api(
 In some cases there may be a family of base URLs, from which you will need
 to choose one.}
 
-\item{endpoint}{The path to an API endpoint. Optionally, a list with the path
+\item{path}{The route to an API endpoint. Optionally, a list with the path
 plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
 
 \item{query}{An optional list of parameters to pass in the query portion of
@@ -47,20 +43,12 @@ Case is ignored.}
 \item{api_case}{The case standard used by this API. The possible values are
 self-descriptive. Defaults to "snake_case".}
 
-\item{authenticator}{An authenticator function. More details to come in a
-future update to this package.}
+\item{response_parser}{A function to use to parse the server response.
+Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are common. Set
+this to \code{NULL} to return the raw response from \code{\link[httr2:req_perform]{httr2::req_perform()}}.}
 
-\item{authenticator_args}{Arguments for the authenticator function.}
-
-\item{response_parser}{A response parser function. More details to come in a
-future update to this package.}
-
-\item{response_parser_args}{Arguments for the response parser function.}
-
-\item{error_handler}{An error handler function. More details to come in a
-future update to this package.}
-
-\item{error_handler_args}{Arguments for the error handler function.}
+\item{response_parser_args}{An optional list of arguments to the
+\code{response_parser} function.}
 
 \item{user_agent}{A string to identify where this request is coming from.
 It's polite to set the user agent to identify your package, such as

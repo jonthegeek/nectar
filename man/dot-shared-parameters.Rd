@@ -20,7 +20,7 @@ self-descriptive. Defaults to "snake_case".}
 
 \item{depth}{The current recursion depth.}
 
-\item{endpoint}{The path to an API endpoint. Optionally, a list with the path
+\item{path}{The route to an API endpoint. Optionally, a list with the path
 plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
 
 \item{method}{If the method is something other than GET or POST, supply it.
@@ -34,6 +34,10 @@ guess.}
 the request.}
 
 \item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
+
+\item{user_agent}{A string to identify where this request is coming from.
+It's polite to set the user agent to identify your package, such as
+"MyPackage (https://mypackage.com)".}
 
 \item{x}{The object to update.}
 }
