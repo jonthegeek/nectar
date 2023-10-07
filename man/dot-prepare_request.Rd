@@ -10,7 +10,6 @@
   query = NULL,
   body = NULL,
   method = NULL,
-  api_case = NULL,
   mime_type = NULL,
   user_agent = NULL
 )
@@ -32,9 +31,6 @@ class "fs_path" to indicate that it is a path.}
 
 \item{method}{If the method is something other than GET or POST, supply it.
 Case is ignored.}
-
-\item{api_case}{The case standard used by this API. The possible values are
-self-descriptive. Defaults to "snake_case".}
 
 \item{mime_type}{A character scalar indicating the mime type of any files
 present in the body. Some APIs allow you to leave this as NULL for them to

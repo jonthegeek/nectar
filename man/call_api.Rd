@@ -11,8 +11,6 @@ call_api(
   body = NULL,
   mime_type = NULL,
   method = NULL,
-  api_case = c("snake_case", "camelCase", "UpperCamel", "SCREAMING_SNAKE", "alllower",
-    "ALLUPPER", "lowerUPPER", "UPPERlower", "Sentence case", "Title Case"),
   response_parser = httr2::resp_body_json,
   response_parser_args = list(),
   user_agent = "nectar (https://jonthegeek.github.io/nectar/)"
@@ -39,9 +37,6 @@ guess.}
 
 \item{method}{If the method is something other than GET or POST, supply it.
 Case is ignored.}
-
-\item{api_case}{The case standard used by this API. The possible values are
-self-descriptive. Defaults to "snake_case".}
 
 \item{response_parser}{A function to use to parse the server response.
 Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are common. Set

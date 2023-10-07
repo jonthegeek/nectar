@@ -9,7 +9,6 @@
                              query = NULL,
                              body = NULL,
                              method = NULL,
-                             api_case = NULL,
                              mime_type = NULL,
                              user_agent = NULL) {
   req <- httr2::request(base_url)
@@ -24,7 +23,7 @@
     # (after smushing it). Basically do a lot of what I do to bodies.
     req <- httr2::req_url_query(req, !!!query)
   }
-  req <- req_body_auto(req, body, api_case, mime_type)
+  req <- req_body_auto(req, body, mime_type)
   if (length(method)) {
     req <- httr2::req_method(req, method)
   }

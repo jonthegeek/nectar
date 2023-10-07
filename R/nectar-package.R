@@ -8,5 +8,3 @@
 NULL
 
 # TODO: Test everything.
-#
-# TODO: Remove auth stuff?

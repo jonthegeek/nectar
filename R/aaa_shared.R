@@ -2,8 +2,6 @@
 #'
 #' Reused parameter definitions are gathered here for easier editing.
 #'
-#' @param api_case The case standard used by this API. The possible values are
-#'   self-descriptive. Defaults to "snake_case".
 #' @param base_url The part of the url that is shared by all calls to the API.
 #'   In some cases there may be a family of base URLs, from which you will need
 #'   to choose one.

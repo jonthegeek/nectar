@@ -4,13 +4,7 @@
 \alias{req_body_auto}
 \title{Send data in request body}
 \usage{
-req_body_auto(
-  req,
-  body,
-  api_case = c("snake_case", "camelCase", "UpperCamel", "SCREAMING_SNAKE", "alllower",
-    "ALLUPPER", "lowerUPPER", "UPPERlower", "Sentence case", "Title Case"),
-  mime_type = NULL
-)
+req_body_auto(req, body, mime_type = NULL)
 }
 \arguments{
 \item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
@@ -18,9 +12,6 @@ req_body_auto(
 \item{body}{An object to use as the body of the request. If any component of
 the body is a path, pass it through \code{\link[fs:path]{fs::path()}} or otherwise give it the
 class "fs_path" to indicate that it is a path.}
-
-\item{api_case}{The case standard used by this API. The possible values are
-self-descriptive. Defaults to "snake_case".}
 
 \item{mime_type}{A character scalar indicating the mime type of any files
 present in the body. Some APIs allow you to leave this as NULL for them to

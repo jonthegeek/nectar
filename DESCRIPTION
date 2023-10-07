@@ -26,5 +26,4 @@ Imports:
     jsonlite,
     purrr,
     rlang,
-    snakecase,
     utils

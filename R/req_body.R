@@ -5,15 +5,8 @@
 #' @return A prepared body list object with a "json" or "multipart" subclass.
 #' @keywords internal
 .prepare_body <- function(body,
-                          api_case = c(
-                            "snake_case", "camelCase", "UpperCamel",
-                            "SCREAMING_SNAKE", "alllower",
-                            "ALLUPPER", "lowerUPPER", "UPPERlower",
-                            "Sentence case", "Title Case"
-                          ),
                           mime_type = NULL) {
   body <- compact_nested_list(body)
-  body <- enforce_name_case(body, api_case)
 
   if (purrr::some(body, \(x) inherits(x, "fs_path"))) {
     body <- purrr::map(body, .prepare_body_part, mime_type)
@@ -55,18 +48,12 @@
 #' @export
 req_body_auto <- function(req,
                           body,
-                          api_case = c(
-                            "snake_case", "camelCase", "UpperCamel",
-                            "SCREAMING_SNAKE", "alllower",
-                            "ALLUPPER", "lowerUPPER", "UPPERlower",
-                            "Sentence case", "Title Case"
-                          ),
                           mime_type = NULL) {
   if (rlang::is_null(body)) {
     return(req)
   }
 
-  body <- .prepare_body(body, api_case, mime_type)
+  body <- .prepare_body(body, mime_type)
   return(.add_body(req, body))
 }
 
