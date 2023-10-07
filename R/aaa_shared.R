@@ -26,6 +26,8 @@
 #'   "MyPackage (https://mypackage.com)".
 #' @param x The object to update.
 #'
+#' @importFrom fs path
+#'
 #' @name .shared-parameters
 #' @keywords internal
 NULL

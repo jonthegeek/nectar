@@ -1,3 +1,5 @@
+# nocov start
+
 #' OAuth parameters
 #'
 #' These parameters are used in multiple authentication functions. We define
@@ -75,3 +77,5 @@ api_client <- function(client_id = "", client_secret = "", api_token_url) {
     class = "missing_client_params"
   )
 }
+
+# nocov end
