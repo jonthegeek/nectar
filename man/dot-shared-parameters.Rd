@@ -4,9 +4,6 @@
 \alias{.shared-parameters}
 \title{Parameters used in multiple functions}
 \arguments{
-\item{api_case}{The case standard used by this API. The possible values are
-self-descriptive. Defaults to "snake_case".}
-
 \item{base_url}{The part of the url that is shared by all calls to the API.
 In some cases there may be a family of base URLs, from which you will need
 to choose one.}

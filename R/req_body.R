@@ -1,37 +1,21 @@
-#' Prepare the body of a request
-#'
-#' @inheritParams .shared-parameters
-#'
-#' @return A prepared body list object with a "json" or "multipart" subclass.
-#' @keywords internal
 .prepare_body <- function(body,
-                          api_case = c(
-                            "snake_case", "camelCase", "UpperCamel",
-                            "SCREAMING_SNAKE", "alllower",
-                            "ALLUPPER", "lowerUPPER", "UPPERlower",
-                            "Sentence case", "Title Case"
-                          ),
                           mime_type = NULL) {
   body <- compact_nested_list(body)
-  body <- enforce_name_case(body, api_case)
-
-  if (purrr::some(body, \(x) inherits(x, "fs_path"))) {
-    body <- purrr::map(body, .prepare_body_part, mime_type)
-    class(body) <- c("multipart", "list")
-    return(body)
-  } else {
+  if (length(body)) {
+    if (purrr::some(body, \(x) inherits(x, "fs_path"))) {
+      return(.prepare_body_path(body, mime_type))
+    }
     class(body) <- c("json", "list")
-    return(body)
   }
+  return(body)
 }
 
-#' Prepare a multipart body part
-#'
-#' @param body_part One piece of a multipart body.
-#' @inheritParams .shared-parameters
-#'
-#' @return A character or raw vector to post.
-#' @keywords internal
+.prepare_body_path <- function(body, mime_type) {
+  body <- purrr::map(body, .prepare_body_part, mime_type)
+  class(body) <- c("multipart", "list")
+  return(body)
+}
+
 .prepare_body_part <- function(body_part, mime_type = NULL) {
   if (inherits(body_part, "fs_path")) {
     return(curl::form_file(body_part, type = mime_type))
@@ -52,51 +36,27 @@
 #' @inheritParams .shared-parameters
 #'
 #' @inherit httr2::req_body_json return
-#' @export
-req_body_auto <- function(req,
-                          body,
-                          api_case = c(
-                            "snake_case", "camelCase", "UpperCamel",
-                            "SCREAMING_SNAKE", "alllower",
-                            "ALLUPPER", "lowerUPPER", "UPPERlower",
-                            "Sentence case", "Title Case"
-                          ),
-                          mime_type = NULL) {
-  if (rlang::is_null(body)) {
-    return(req)
+#' @keywords internal
+.req_body_auto <- function(req,
+                           body,
+                           mime_type = NULL) {
+  body <- .prepare_body(body, mime_type)
+  if (length(body)) {
+    req <- .add_body(req, body)
   }
-
-  body <- .prepare_body(body, api_case, mime_type)
-  return(.add_body(req, body))
+  return(req)
 }
 
-#' Add the body to the request
-#'
-#' @inheritParams .shared-parameters
-#'
-#' @return The request with the body appropriately added.
-#' @keywords internal
 .add_body <- function(req, body) {
   UseMethod(".add_body", body)
 }
 
-
 #' @export
 .add_body.multipart <- function(req, body) {
-  return(
-    httr2::req_body_multipart(
-      req,
-      !!!unclass(body)
-    )
-  )
+  return(httr2::req_body_multipart(req, !!!unclass(body)))
 }
 
 #' @export
 .add_body.json <- function(req, body) {
-  return(
-    httr2::req_body_json(
-      req,
-      data = unclass(body)
-    )
-  )
+  return(httr2::req_body_json(req, data = unclass(body)))
 }

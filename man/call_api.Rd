@@ -11,11 +11,11 @@ call_api(
   body = NULL,
   mime_type = NULL,
   method = NULL,
-  api_case = c("snake_case", "camelCase", "UpperCamel", "SCREAMING_SNAKE", "alllower",
-    "ALLUPPER", "lowerUPPER", "UPPERlower", "Sentence case", "Title Case"),
+  security_fn = NULL,
+  security_args = list(),
   response_parser = httr2::resp_body_json,
   response_parser_args = list(),
-  user_agent = "nectar (https://jonthegeek.github.io/nectar/)"
+  user_agent = "nectar (https://nectar.api2r.org)"
 )
 }
 \arguments{
@@ -40,8 +40,11 @@ guess.}
 \item{method}{If the method is something other than GET or POST, supply it.
 Case is ignored.}
 
-\item{api_case}{The case standard used by this API. The possible values are
-self-descriptive. Defaults to "snake_case".}
+\item{security_fn}{A function to use to authenticate the request. By default
+(\code{NULL}), no authentication is performed.}
+
+\item{security_args}{An optional list of arguments to the \code{security_fn}
+function.}
 
 \item{response_parser}{A function to use to parse the server response.
 Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are common. Set

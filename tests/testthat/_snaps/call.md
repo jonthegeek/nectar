@@ -1,20 +1,18 @@
-# call_api() deals with paths.
+# call_api() uses response_parser
 
     Code
-      call_api(base_url = "https://example.com", path = "foo/bar", response_parser = NULL,
-        user_agent = NULL)
-    Message <cliMessage>
-      <performed/httr2_request>
-      GET https://example.com/foo/bar
-      Body: empty
+      test_result <- call_api(base_url = "https://example.com", response_parser_args = list(
+        simplifyVector = TRUE), user_agent = NULL)
+      test_result
+    Output
+      response_parser(resp, simplifyVector = TRUE)
 
 ---
 
     Code
-      call_api(base_url = "https://example.com", path = list("foo/{bar}", bar = "baz"),
-      response_parser = NULL, user_agent = NULL)
-    Message <cliMessage>
-      <performed/httr2_request>
-      GET https://example.com/foo/baz
-      Body: empty
+      test_result <- call_api(base_url = "https://example.com", response_parser = httr2::resp_body_html,
+      response_parser_args = list(check_type = FALSE), user_agent = NULL)
+      test_result
+    Output
+      response_parser(resp, check_type = FALSE)
 

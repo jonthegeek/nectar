@@ -11,7 +11,7 @@ An opinionated framework for use within api-wrapping R packages.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://jonthegeek.github.io/nectar/}
+  \item \url{https://nectar.api2r.org}
   \item \url{https://github.com/jonthegeek/nectar}
   \item Report bugs at \url{https://github.com/jonthegeek/nectar/issues}
 }
