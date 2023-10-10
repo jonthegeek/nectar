@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nectar <a href="https://jonthegeek.github.io/nectar/"><img src="man/figures/logo.svg" align="right" height="424" /></a>
+# nectar <a href="https://nectar.api2r.org"><img src="man/figures/logo.svg" align="right" height="424" /></a>
 
 <!-- badges: start -->
 
@@ -33,5 +33,5 @@ Add usage information and examples here.
 ## Code of Conduct
 
 Please note that the nectar project is released with a [Contributor Code
-of Conduct](https://jonthegeek.github.io/nectar/CODE_OF_CONDUCT.html).
-By contributing to this project, you agree to abide by its terms.
+of Conduct](https://nectar.api2r.org/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.

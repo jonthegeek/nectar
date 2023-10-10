@@ -15,7 +15,7 @@ test_that("call_api() uses query parameters", {
   )
   expect_identical(
     test_result$url,
-    "https://example.com?foo=bar&baz=qux"
+    "https://example.com/?foo=bar&baz=qux"
   )
 })
 
@@ -36,6 +36,6 @@ test_that("call_api() smushes and concatenates multi-value query parameters", {
   )
   expect_identical(
     test_result$url,
-    "https://example.com?foo=bar&baz=qux%2Cquux"
+    "https://example.com/?foo=bar&baz=qux%2Cquux"
   )
 })

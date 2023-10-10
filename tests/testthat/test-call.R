@@ -13,7 +13,7 @@ test_that("call_api() calls an API", {
   })
   expect_identical(
     test_result$url,
-    "https://example.com"
+    "https://example.com/"
   )
 })
 
@@ -109,5 +109,26 @@ test_that("call_api() applies user_agent", {
   expect_identical(
     test_result$options$useragent,
     "foo"
+  )
+})
+
+test_that("call_api() applies security", {
+  local_mocked_bindings(
+    .resp_get = function(req) {
+      structure(req, class = c("performed", class(req)))
+    }
+  )
+  test_result <- call_api(
+    base_url = "https://example.com",
+    response_parser = NULL,
+    user_agent = NULL,
+    security_fn = httr2::req_url_query,
+    security_args = list(
+      security = "set"
+    )
+  )
+  expect_identical(
+    test_result$url,
+    "https://example.com/?security=set"
   )
 })

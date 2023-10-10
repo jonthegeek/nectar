@@ -1,10 +1,12 @@
 .prepare_body <- function(body,
                           mime_type = NULL) {
   body <- compact_nested_list(body)
-  if (purrr::some(body, \(x) inherits(x, "fs_path"))) {
-    return(.prepare_body_path(body, mime_type))
+  if (length(body)) {
+    if (purrr::some(body, \(x) inherits(x, "fs_path"))) {
+      return(.prepare_body_path(body, mime_type))
+    }
+    class(body) <- c("json", "list")
   }
-  class(body) <- c("json", "list")
   return(body)
 }
 
@@ -38,11 +40,11 @@
 .req_body_auto <- function(req,
                            body,
                            mime_type = NULL) {
-  if (!length(body)) {
-    return(req)
-  }
   body <- .prepare_body(body, mime_type)
-  return(.add_body(req, body))
+  if (length(body)) {
+    req <- .add_body(req, body)
+  }
+  return(req)
 }
 
 .add_body <- function(req, body) {
