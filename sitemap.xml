@@ -1,87 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jonthegeek.github.io/nectar/404.html</loc>
+    <loc>https://nectar.api2r.org/404.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/CODE_OF_CONDUCT.html</loc>
+    <loc>https://nectar.api2r.org/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/CONTRIBUTING.html</loc>
+    <loc>https://nectar.api2r.org/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/LICENSE-text.html</loc>
+    <loc>https://nectar.api2r.org/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/LICENSE.html</loc>
+    <loc>https://nectar.api2r.org/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/SUPPORT.html</loc>
+    <loc>https://nectar.api2r.org/SUPPORT.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/authors.html</loc>
+    <loc>https://nectar.api2r.org/authors.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/index.html</loc>
+    <loc>https://nectar.api2r.org/index.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/api_browse_oauth_app.html</loc>
+    <loc>https://nectar.api2r.org/reference/call_api.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/api_client.html</loc>
+    <loc>https://nectar.api2r.org/reference/compact_nested_list.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/call_api.html</loc>
+    <loc>https://nectar.api2r.org/reference/dot-compact_nested_list_impl.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/compact_nested_list.html</loc>
+    <loc>https://nectar.api2r.org/reference/dot-req_body_auto.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-add_body.html</loc>
+    <loc>https://nectar.api2r.org/reference/dot-security_api_key_cookie.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-compact_nested_list_impl.html</loc>
+    <loc>https://nectar.api2r.org/reference/dot-security_api_key_header.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-enforce_name_case_impl.html</loc>
+    <loc>https://nectar.api2r.org/reference/dot-shared-parameters.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-oauth-parameters.html</loc>
+    <loc>https://nectar.api2r.org/reference/dot-shared-request.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-prepare_body.html</loc>
+    <loc>https://nectar.api2r.org/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-prepare_body_part.html</loc>
+    <loc>https://nectar.api2r.org/reference/nectar-package.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-prepare_request.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-shared-parameters.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-shared-request.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-to_lower_snakeless.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/dot-to_upper_snakeless.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/enforce_name_case.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/nectar-package.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/req_body_auto.html</loc>
-  </url>
-  <url>
-    <loc>https://jonthegeek.github.io/nectar/reference/to_csv_scalar.html</loc>
+    <loc>https://nectar.api2r.org/reference/security_api_key.html</loc>
   </url>
 </urlset>
