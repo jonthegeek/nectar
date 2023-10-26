@@ -9,8 +9,7 @@ Authors@R: c(
 Description: An opinionated framework for use within api-wrapping R
     packages.
 License: MIT + file LICENSE
-URL: https://nectar.api2r.org,
-    https://github.com/jonthegeek/nectar
+URL: https://nectar.api2r.org, https://github.com/jonthegeek/nectar
 BugReports: https://github.com/jonthegeek/nectar/issues
 Imports: 
     curl,
@@ -19,11 +18,13 @@ Imports:
     httr2 (>= 0.2.3.9000),
     jsonlite,
     purrr,
-    rlang
+    rlang,
+    stbl
 Suggests: 
     covr,
     testthat (>= 3.0.0)
 Remotes:
+    jonthegeek/stbl,
     r-lib/httr2
 Config/testthat/edition: 3
 Encoding: UTF-8
