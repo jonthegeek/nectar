@@ -57,4 +57,7 @@
   <url>
     <loc>https://nectar.api2r.org/reference/security_api_key.html</loc>
   </url>
+  <url>
+    <loc>https://nectar.api2r.org/reference/stabilize_string.html</loc>
+  </url>
 </urlset>
