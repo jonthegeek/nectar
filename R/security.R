@@ -1,6 +1,3 @@
-# @param ... Additional arguments, which depend on the location of the API key.
-
-
 #' Authenticate with an API key
 #'
 #' Many APIs provide API keys that can be used to authenticate requests (or,

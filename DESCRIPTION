@@ -19,7 +19,8 @@ Imports:
     httr2 (>= 0.2.3.9000),
     jsonlite,
     purrr,
-    rlang
+    rlang,
+    stbl
 Suggests: 
     covr,
     testthat (>= 3.0.0)
