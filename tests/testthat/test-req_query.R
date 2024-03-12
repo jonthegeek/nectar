@@ -1,16 +1,10 @@
-test_that("call_api() uses query parameters", {
-  local_mocked_bindings(
-    .resp_get = function(req) {
-      structure(req, class = c("performed", class(req)))
-    }
-  )
-  test_result <- call_api(
+test_that("req_prepare() uses query parameters", {
+  test_result <- req_prepare(
     base_url = "https://example.com",
     query = list(
       foo = "bar",
       baz = "qux"
     ),
-    response_parser = NULL,
     user_agent = NULL
   )
   expect_identical(
@@ -19,19 +13,13 @@ test_that("call_api() uses query parameters", {
   )
 })
 
-test_that("call_api() smushes and concatenates multi-value query parameters", {
-  local_mocked_bindings(
-    .resp_get = function(req) {
-      structure(req, class = c("performed", class(req)))
-    }
-  )
-  test_result <- call_api(
+test_that("req_prepare() smushes and concatenates multi-value query parameters", {
+  test_result <- req_prepare(
     base_url = "https://example.com",
     query = list(
       foo = "bar",
       baz = c("qux", "quux")
     ),
-    response_parser = NULL,
     user_agent = NULL
   )
   expect_identical(

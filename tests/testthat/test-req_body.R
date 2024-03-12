@@ -1,16 +1,10 @@
-test_that("call_api() uses body parameters", {
-  local_mocked_bindings(
-    .resp_get = function(req) {
-      structure(req, class = c("performed", class(req)))
-    }
-  )
-  test_result <- call_api(
+test_that("req_prepare() uses body parameters", {
+  test_result <- req_prepare(
     base_url = "https://example.com",
     body = list(
       foo = "bar",
       baz = "qux"
     ),
-    response_parser = NULL,
     user_agent = NULL
   )
   expect_identical(
@@ -20,19 +14,13 @@ test_that("call_api() uses body parameters", {
 })
 
 test_that("bodies with paths are handled properly", {
-  local_mocked_bindings(
-    .resp_get = function(req) {
-      structure(req, class = c("performed", class(req)))
-    }
-  )
   expect_snapshot({
-    test_result <- call_api(
+    test_result <- req_prepare(
       base_url = "https://example.com",
       body = list(
         foo = "bar",
         baz = fs::path(test_path("img-test.png"))
       ),
-      response_parser = NULL,
       user_agent = NULL
     )
     test_result$body
