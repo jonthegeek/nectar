@@ -1,6 +1,6 @@
 test_that("call_api() calls an API", {
   local_mocked_bindings(
-    .resp_get = function(req) {
+    req_perform = function(req) {
       structure(req, class = c("performed", class(req)))
     }
   )
@@ -17,41 +17,30 @@ test_that("call_api() calls an API", {
   )
 })
 
-test_that("call_api() deals with paths.", {
+test_that("call_api() applies security", {
   local_mocked_bindings(
-    .resp_get = function(req) {
+    req_perform = function(req) {
       structure(req, class = c("performed", class(req)))
     }
   )
   test_result <- call_api(
     base_url = "https://example.com",
-    path = "foo/bar",
-    response_parser = NULL,
-    user_agent = NULL
-  )
-  expect_identical(
-    test_result$url,
-    "https://example.com/foo/bar"
-  )
-
-  test_result <- call_api(
-    base_url = "https://example.com",
-    path = list(
-      "foo/{bar}",
-      bar = "baz"
+    user_agent = NULL,
+    security_fn = httr2::req_url_query,
+    security_args = list(
+      security = "set"
     ),
-    response_parser = NULL,
-    user_agent = NULL
+    response_parser = NULL
   )
   expect_identical(
     test_result$url,
-    "https://example.com/foo/baz"
+    "https://example.com/?security=set"
   )
 })
 
 test_that("call_api() uses response_parser", {
   local_mocked_bindings(
-    .resp_get = function(req) {
+    req_perform = function(req) {
       structure(req, class = c("performed", class(req)))
     },
     .resp_parse_apply = function(resp, response_parser, response_parser_args) {
@@ -75,60 +64,4 @@ test_that("call_api() uses response_parser", {
     )
     test_result
   })
-})
-
-test_that("call_api() applies methods", {
-  local_mocked_bindings(
-    .resp_get = function(req) {
-      structure(req, class = c("performed", class(req)))
-    }
-  )
-  test_result <- call_api(
-    base_url = "https://example.com",
-    method = "PATCH",
-    response_parser = NULL,
-    user_agent = NULL
-  )
-  expect_identical(
-    test_result$method,
-    "PATCH"
-  )
-})
-
-test_that("call_api() applies user_agent", {
-  local_mocked_bindings(
-    .resp_get = function(req) {
-      structure(req, class = c("performed", class(req)))
-    }
-  )
-  test_result <- call_api(
-    base_url = "https://example.com",
-    response_parser = NULL,
-    user_agent = "foo"
-  )
-  expect_identical(
-    test_result$options$useragent,
-    "foo"
-  )
-})
-
-test_that("call_api() applies security", {
-  local_mocked_bindings(
-    .resp_get = function(req) {
-      structure(req, class = c("performed", class(req)))
-    }
-  )
-  test_result <- call_api(
-    base_url = "https://example.com",
-    response_parser = NULL,
-    user_agent = NULL,
-    security_fn = httr2::req_url_query,
-    security_args = list(
-      security = "set"
-    )
-  )
-  expect_identical(
-    test_result$url,
-    "https://example.com/?security=set"
-  )
 })

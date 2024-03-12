@@ -17,9 +17,6 @@ self-descriptive. Defaults to "snake_case".}
 
 \item{depth}{The current recursion depth.}
 
-\item{path}{The route to an API endpoint. Optionally, a list with the path
-plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
-
 \item{method}{If the method is something other than GET or POST, supply it.
 Case is ignored.}
 
@@ -27,10 +24,19 @@ Case is ignored.}
 present in the body. Some APIs allow you to leave this as NULL for them to
 guess.}
 
+\item{path}{The route to an API endpoint. Optionally, a list with the path
+plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
+
 \item{query}{An optional list of parameters to pass in the query portion of
 the request.}
 
 \item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
+
+\item{security_fn}{A function to use to authenticate the request. By default
+(\code{NULL}), no authentication is performed.}
+
+\item{security_args}{An optional list of arguments to the \code{security_fn}
+function.}
 
 \item{user_agent}{A string to identify where this request is coming from.
 It's polite to set the user agent to identify your package, such as
