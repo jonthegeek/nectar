@@ -34,3 +34,31 @@ compact_nested_list <- function(lst) {
   }
   return(purrr::compact(lst))
 }
+
+#' Add path elements to a URL
+#'
+#' Append zero or more path elements to a URL without duplicating "/"
+#' characters. Based on [httr2::req_url_path_append()].
+#'
+#' @param url A URL to modify.
+#' @param ... Path elements to append, as strings.
+#'
+#' @return A modified URL.
+#' @export
+#'
+#' @examples
+#' url_path_append("https://example.com", "api", "v1", "users")
+#' url_path_append("https://example.com/", "/api", "/v1", "/users")
+#' url_path_append("https://example.com/", "/api/v1/users")
+url_path_append <- function(url, ...) {
+  url <- httr2::url_parse(url)
+  url$path <- .path_merge(url$path, ...)
+  return(httr2::url_build(url))
+}
+
+.path_merge <- function(...) {
+  path <- paste(c(...), collapse = "/")
+  path <- sub("^([^/])", "/\\1", path)
+  path <- gsub("/+", "/", path)
+  return(sub("/$", "", path))
+}
