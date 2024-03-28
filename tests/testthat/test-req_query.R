@@ -13,7 +13,7 @@ test_that("req_prepare() uses query parameters", {
   )
 })
 
-test_that("req_prepare() smushes and concatenates multi-value query parameters", {
+test_that("req_prepare() smushes & concatenates multi-value query parameters", {
   test_result <- req_prepare(
     base_url = "https://example.com",
     query = list(
