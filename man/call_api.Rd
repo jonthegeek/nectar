@@ -15,6 +15,8 @@ call_api(
   security_args = list(),
   response_parser = httr2::resp_body_json,
   response_parser_args = list(),
+  next_req = NULL,
+  max_reqs = Inf,
   user_agent = "nectar (https://nectar.api2r.org)"
 )
 }
@@ -46,12 +48,21 @@ Case is ignored.}
 \item{security_args}{An optional list of arguments to the \code{security_fn}
 function.}
 
-\item{response_parser}{A function to use to parse the server response.
+\item{response_parser}{A function to parse the server response (\code{resp}).
 Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are common. Set
 this to \code{NULL} to return the raw response from \code{\link[httr2:req_perform]{httr2::req_perform()}}.}
 
-\item{response_parser_args}{An optional list of arguments to the
-\code{response_parser} function.}
+\item{response_parser_args}{An optional list of arguments to pass to the
+\code{response_parser} function (in addition to \code{resp}).}
+
+\item{next_req}{An optional function that takes the previous response
+(\code{resp}) to generate the next request in a call to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
+using \code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}, \code{\link[httr2:iterate_with_offset]{httr2::iterate_with_cursor()}}, or
+\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_link_url()}}.}
+
+\item{max_reqs}{The maximum number of requests to perform. Use \code{Inf} to
+perform all requests until \code{next_req()} returns \code{NULL}.}
 
 \item{user_agent}{A string to identify where this request is coming from.
 It's polite to set the user agent to identify your package, such as
@@ -64,5 +75,6 @@ The response from the API, parsed by the \code{response_parser}.
 This function implements an opinionated framework for making API calls. It is
 intended to be used inside an API client package. It serves as a wrapper
 around the \code{req_} family of functions, such as \code{\link[httr2:request]{httr2::request()}}, as well as
-\code{\link[httr2:req_perform]{httr2::req_perform()}} and, by default, \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}.
+\code{\link[httr2:req_perform]{httr2::req_perform()}} and \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}, and, by default,
+\code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}.
 }
