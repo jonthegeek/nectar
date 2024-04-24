@@ -21,6 +21,9 @@
 #' @param query An optional list of parameters to pass in the query portion of
 #'   the request.
 #' @param req An [httr2::request()] object.
+#' @param response_parser A function to parse the server response (`resp`).
+#'   Defaults to [httr2::resp_body_json()], since JSON responses are common. Set
+#'   this to `NULL` to return the raw response from [httr2::req_perform()].
 #' @param security_fn A function to use to authenticate the request. By default
 #'   (`NULL`), no authentication is performed.
 #' @param security_args An optional list of arguments to the `security_fn`
