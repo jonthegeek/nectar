@@ -12,6 +12,7 @@ License: MIT + file LICENSE
 URL: https://nectar.api2r.org, https://github.com/jonthegeek/nectar
 BugReports: https://github.com/jonthegeek/nectar/issues
 Imports: 
+    cli,
     curl,
     fs,
     glue,

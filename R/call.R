@@ -8,9 +8,6 @@
 #'
 #' @inheritParams .shared-parameters
 #' @inheritParams httr2::req_perform_iterative
-#' @param response_parser A function to parse the server response (`resp`).
-#'   Defaults to [httr2::resp_body_json()], since JSON responses are common. Set
-#'   this to `NULL` to return the raw response from [httr2::req_perform()].
 #' @param response_parser_args An optional list of arguments to pass to the
 #'   `response_parser` function (in addition to `resp`).
 #' @param next_req An optional function that takes the previous response
@@ -45,7 +42,11 @@ call_api <- function(base_url,
   )
   req <- .req_security_apply(req, security_fn, security_args)
   resp <- .req_perform(req, next_req, max_reqs)
-  resp <- .resp_parse(resp, response_parser, response_parser_args)
+  resp <- resp_parse(
+    resp,
+    response_parser = response_parser,
+    !!!response_parser_args
+  )
   return(resp)
 }
 
@@ -74,36 +75,4 @@ call_api <- function(base_url,
     next_req = next_req,
     max_reqs = max_reqs
   )
-}
-
-.resp_parse <- function(resp, response_parser, response_parser_args) {
-  UseMethod(".resp_parse")
-}
-
-#' @export
-.resp_parse.list <- function(resp, response_parser, response_parser_args) {
-  resps_data(
-    httr2::resps_successes(resp),
-    resp_data = function(resp) {
-      .resp_parse(resp, response_parser, response_parser_args)
-    }
-  )
-}
-
-#' @export
-.resp_parse.httr2_response <- function(resp,
-                                       response_parser,
-                                       response_parser_args) {
-  if (length(response_parser)) {
-    resp <- .resp_parse_apply(
-      resp,
-      response_parser,
-      response_parser_args
-    )
-  }
-  return(resp)
-}
-
-.resp_parse_apply <- function(resp, response_parser, response_parser_args) {
-  return(rlang::inject(response_parser(resp, !!!response_parser_args))) # nocov
 }

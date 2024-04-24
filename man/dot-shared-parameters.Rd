@@ -32,6 +32,10 @@ the request.}
 
 \item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
 
+\item{response_parser}{A function to parse the server response (\code{resp}).
+Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are common. Set
+this to \code{NULL} to return the raw response from \code{\link[httr2:req_perform]{httr2::req_perform()}}.}
+
 \item{security_fn}{A function to use to authenticate the request. By default
 (\code{NULL}), no authentication is performed.}
 
