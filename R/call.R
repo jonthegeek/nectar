@@ -6,12 +6,25 @@
 #' [httr2::req_perform()] and [httr2::req_perform_iterative()], and, by default,
 #' [httr2::resp_body_json()].
 #'
-#' @inheritParams .shared-parameters
+#' @seealso [req_setup()], [req_modify()], [req_perform_opinionated()],
+#'   [resp_parse()], and [do_if_defined()] for finer control of the process.
+#'
+#' @inheritParams rlang::args_dots_empty
+#' @inheritParams req_setup
+#' @inheritParams req_modify
 #' @inheritParams req_perform_opinionated
+#' @inheritParams resp_parse
+#' @param security_fn A function to use to authenticate the request. By default
+#'   (`NULL`), no authentication is performed.
+#' @param security_args An optional list of arguments to the `security_fn`
+#'   function.
+#' @param response_parser_args An optional list of arguments to pass to the
+#'   `response_parser` function (in addition to `resp`).
 #'
 #' @return The response from the API, parsed by the `response_parser`.
 #' @export
 call_api <- function(base_url,
+                     ...,
                      path = NULL,
                      query = NULL,
                      body = NULL,
@@ -25,14 +38,15 @@ call_api <- function(base_url,
                      max_reqs = Inf,
                      max_tries_per_req = 3,
                      user_agent = "nectar (https://nectar.api2r.org)") {
-  req <- req_prepare(
-    base_url = base_url,
+  rlang::check_dots_empty()
+  req <- req_setup(base_url, user_agent = user_agent)
+  req <- req_modify(
+    req,
     path = path,
     query = query,
     body = body,
     mime_type = mime_type,
-    method = method,
-    user_agent = user_agent
+    method = method
   )
   req <- do_if_defined(req, security_fn, !!!security_args)
   resp <- req_perform_opinionated(

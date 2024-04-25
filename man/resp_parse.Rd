@@ -38,8 +38,9 @@ this to \code{NULL} to return the raw response from \code{\link[httr2:req_perfor
 }
 \value{
 The response parsed by the \code{response_parser}. If \code{resp} was a list,
-the parsed responses are concatenated. See \code{\link[httr2:resps_successes]{httr2::resps_data()}} for
-examples.
+the parsed responses are concatenated when possible. Unlike
+\link[httr2:resps_successes]{httr2::resps_data}, this function does not concatenate raw vector
+responses.
 }
 \description{
 \code{httr2} provides two methods for performing requests: \code{\link[httr2:req_perform]{httr2::req_perform()}},

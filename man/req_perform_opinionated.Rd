@@ -13,7 +13,7 @@ req_perform_opinionated(
 )
 }
 \arguments{
-\item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
+\item{req}{The first \link[httr2]{request} to perform.}
 
 \item{...}{These dots are for future extensions and must be empty.}
 

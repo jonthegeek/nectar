@@ -7,7 +7,7 @@
 security_api_key(req, ..., location = "header")
 }
 \arguments{
-\item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
+\item{req}{A \code{\link[httr2:request]{httr2::request()}} object.}
 
 \item{...}{Additional parameters depending on the location of the API key.
 \itemize{
@@ -21,7 +21,7 @@ use in the header or query.
 (default), \code{"query"}, or \code{"cookie"}.}
 }
 \value{
-An \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object.
 }
 \description{
 Many APIs provide API keys that can be used to authenticate requests (or,

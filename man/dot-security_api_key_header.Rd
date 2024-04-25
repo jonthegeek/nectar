@@ -7,14 +7,14 @@
 .security_api_key_header(req, ..., parameter_name, api_key)
 }
 \arguments{
-\item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
+\item{req}{A \code{\link[httr2:request]{httr2::request()}} object.}
 
 \item{parameter_name}{The name to use for the API key.}
 
 \item{api_key}{The API key to use.}
 }
 \value{
-An \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object.
 }
 \description{
 Authenticate with an API key in the header of the request

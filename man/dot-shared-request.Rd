@@ -4,7 +4,7 @@
 \alias{.shared-request}
 \title{Returns from request functions}
 \value{
-An \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object.
 }
 \description{
 Returns from request functions

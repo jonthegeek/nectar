@@ -7,7 +7,7 @@
 .req_body_auto(req, body, mime_type = NULL)
 }
 \arguments{
-\item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
+\item{req}{A \code{\link[httr2:request]{httr2::request()}} object.}
 
 \item{body}{An object to use as the body of the request. If any component of
 the body is a path, pass it through \code{\link[fs:path]{fs::path()}} or otherwise give it the

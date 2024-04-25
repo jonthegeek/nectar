@@ -4,7 +4,6 @@
 #' then performs the request, using either [httr2::req_perform_iterative()] (if
 #' a `next_req` function is supplied) or [httr2::req_perform()] (if not).
 #'
-#' @inheritParams .shared-parameters
 #' @inheritParams httr2::req_perform_iterative
 #' @inheritParams rlang::args_dots_empty
 #' @param next_req An optional function that takes the previous response

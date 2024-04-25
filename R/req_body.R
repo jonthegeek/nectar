@@ -34,6 +34,12 @@
 #' currently experimental and needs to be tested on more APIs.
 #'
 #' @inheritParams .shared-parameters
+#' @param body An object to use as the body of the request. If any component of
+#'   the body is a path, pass it through [fs::path()] or otherwise give it the
+#'   class "fs_path" to indicate that it is a path.
+#' @param mime_type A character scalar indicating the mime type of any files
+#'   present in the body. Some APIs allow you to leave this as NULL for them to
+#'   guess.
 #'
 #' @inherit httr2::req_body_json return
 #' @keywords internal

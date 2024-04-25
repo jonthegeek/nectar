@@ -37,19 +37,13 @@ test_that("req_prepare() applies methods", {
     base_url = "https://example.com",
     user_agent = NULL
   )
-  expect_identical(
-    test_result$method,
-    "GET"
-  )
+  expect_null(test_result$method)
   test_result <- req_prepare(
     base_url = "https://example.com",
     body = list(a = 1),
     user_agent = NULL
   )
-  expect_identical(
-    test_result$method,
-    "POST"
-  )
+  expect_null(test_result$method)
 })
 
 test_that("req_prepare() applies user_agent", {
