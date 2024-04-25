@@ -17,6 +17,7 @@ call_api(
   response_parser_args = list(),
   next_req = NULL,
   max_reqs = Inf,
+  max_tries_per_req = 3,
   user_agent = "nectar (https://nectar.api2r.org)"
 )
 }
@@ -58,11 +59,17 @@ this to \code{NULL} to return the raw response from \code{\link[httr2:req_perfor
 \item{next_req}{An optional function that takes the previous response
 (\code{resp}) to generate the next request in a call to
 \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
-using \code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}, \code{\link[httr2:iterate_with_offset]{httr2::iterate_with_cursor()}}, or
-\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_link_url()}}.}
+using one of the iteration helpers described in
+\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}.}
 
-\item{max_reqs}{The maximum number of requests to perform. Use \code{Inf} to
-perform all requests until \code{next_req()} returns \code{NULL}.}
+\item{max_reqs}{The maximum number of separate requests to perform. Passed to
+the max_reqs argument of \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}} when \code{next_req}
+is supplied. The default \code{2} should likely be changed to \code{Inf} after you
+validate the function.}
+
+\item{max_tries_per_req}{The maximum number of times to attempt each
+individual request. Passed to the \code{max_tries} argument of
+\code{\link[httr2:req_retry]{httr2::req_retry()}}.}
 
 \item{user_agent}{A string to identify where this request is coming from.
 It's polite to set the user agent to identify your package, such as

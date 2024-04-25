@@ -1,27 +1,23 @@
 test_that("call_api() calls an API", {
   local_mocked_bindings(
-    req_perform = function(req) {
-      structure(req, class = "httr2_response")
+    req_perform_opinionated = function(req, ...) list("performed"),
+    resp_parse = function(resp, ...) {
+      identical(resp, list("performed"))
     }
   )
   expect_no_error({
     test_result <- call_api(
       base_url = "https://example.com",
-      response_parser = NULL,
       user_agent = NULL
     )
   })
-  expect_identical(
-    test_result$url,
-    "https://example.com/"
-  )
+  expect_true(test_result)
 })
 
 test_that("call_api() applies security", {
   local_mocked_bindings(
-    req_perform = function(req) {
-      structure(req, class = "httr2_response")
-    }
+    req_perform_opinionated = function(req, ...) req,
+    resp_parse = function(resp, ...) resp
   )
   test_result <- call_api(
     base_url = "https://example.com",
@@ -29,8 +25,7 @@ test_that("call_api() applies security", {
     security_fn = httr2::req_url_query,
     security_args = list(
       security = "set"
-    ),
-    response_parser = NULL
+    )
   )
   expect_identical(
     test_result$url,
@@ -40,8 +35,8 @@ test_that("call_api() applies security", {
 
 test_that("call_api() uses response_parser", {
   local_mocked_bindings(
-    req_perform = function(req) {
-      httr2::response(body = "specific text")
+    req_perform_opinionated = function(req, ...) {
+      list(httr2::response(body = "specific text"))
     }
   )
   parser <- function(resp) {
@@ -53,21 +48,4 @@ test_that("call_api() uses response_parser", {
     response_parser = parser
   )
   expect_true(test_result)
-})
-
-test_that("call_api() applies iteration when appropriate", {
-  local_mocked_bindings(
-    req_perform = function(req) {
-      "req_perform"
-    },
-    req_perform_iterative = function(req, next_req = NULL, max_reqs = Inf) {
-      "req_perform_iterative"
-    }
-  )
-  req <- httr2::request("https://example.com")
-  expect_identical(.req_perform(req), "req_perform")
-  expect_identical(
-    .req_perform(req, next_req = mean),
-    "req_perform_iterative"
-  )
 })

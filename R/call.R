@@ -7,14 +7,14 @@
 #' [httr2::resp_body_json()].
 #'
 #' @inheritParams .shared-parameters
-#' @inheritParams httr2::req_perform_iterative
+#' @inheritParams req_perform_opinionated
 #' @param response_parser_args An optional list of arguments to pass to the
 #'   `response_parser` function (in addition to `resp`).
 #' @param next_req An optional function that takes the previous response
 #'   (`resp`) to generate the next request in a call to
 #'   [httr2::req_perform_iterative()]. This function can usually be generated
-#'   using [httr2::iterate_with_offset()], [httr2::iterate_with_cursor()], or
-#'   [httr2::iterate_with_link_url()].
+#'   using one of the iteration helpers described in
+#'   [httr2::iterate_with_offset()].
 #'
 #' @return The response from the API, parsed by the `response_parser`.
 #' @export
@@ -30,6 +30,7 @@ call_api <- function(base_url,
                      response_parser_args = list(),
                      next_req = NULL,
                      max_reqs = Inf,
+                     max_tries_per_req = 3,
                      user_agent = "nectar (https://nectar.api2r.org)") {
   req <- req_prepare(
     base_url = base_url,
@@ -41,7 +42,12 @@ call_api <- function(base_url,
     user_agent = user_agent
   )
   req <- .req_security_apply(req, security_fn, security_args)
-  resp <- .req_perform(req, next_req, max_reqs)
+  resp <- req_perform_opinionated(
+    req,
+    next_req = next_req,
+    max_reqs = max_reqs,
+    max_tries_per_req = max_tries_per_req
+  )
   resp <- resp_parse(
     resp,
     response_parser = response_parser,
@@ -57,22 +63,4 @@ call_api <- function(base_url,
     )
   }
   return(req)
-}
-
-.req_perform <- function(req, next_req = NULL, max_reqs = Inf) {
-  if (is.null(next_req)) {
-    return(req_perform(req))
-  }
-  req <- httr2::req_retry(
-    req,
-    max_tries = 4,
-    backoff = function(attempts) {
-      10 * attempts # nocov
-    }
-  )
-  req_perform_iterative(
-    req,
-    next_req = next_req,
-    max_reqs = max_reqs
-  )
 }
