@@ -49,9 +49,11 @@ resp_parse.httr2_response <- function(resp,
                                       ...,
                                       response_parser = httr2::resp_body_json) {
   if (length(response_parser)) {
-    return(.resp_parse_apply(resp, response_parser, ...))
+    # Higher-level calls can include !!!'ed arguments.
+    dots <- rlang::list2(...)
+    return(rlang::inject(response_parser(resp, !!!dots)))
   }
-  resp
+  return(resp)
 }
 
 #' @export
@@ -64,11 +66,4 @@ resp_parse.list <- function(resp,
       resp_parse(resp, response_parser = response_parser, ...)
     }
   )
-}
-
-
-.resp_parse_apply <- function(resp, response_parser, ...) {
-  # Higher-level calls can include !!!'ed arguments.
-  dots <- rlang::list2(...)
-  return(rlang::inject(response_parser(resp, !!!dots)))
 }
