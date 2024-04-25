@@ -74,9 +74,11 @@ a <code>next_req</code> function is supplied) or <code><a href="https://httr2.r-
 
 
 <dt>next_req</dt>
-<dd><p>A function that takes the previous response (<code>resp</code>) and
-request (<code>req</code>) and returns a <a href="https://httr2.r-lib.org/reference/request.html" class="external-link">request</a> for the next page or <code>NULL</code> if
-the iteration should terminate. See below for more details.</p></dd>
+<dd><p>An optional function that takes the previous response
+(<code>resp</code>) to generate the next request in a call to
+<code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code>. This function can usually be generated
+using one of the iteration helpers described in
+<code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_offset()</a></code>.</p></dd>
 
 
 <dt>max_reqs</dt>
