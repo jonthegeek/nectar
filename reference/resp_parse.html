@@ -112,8 +112,9 @@ this to <code>NULL</code> to return the raw response from <code><a href="https:/
     
 
 <p>The response parsed by the <code>response_parser</code>. If <code>resp</code> was a list,
-the parsed responses are concatenated. See <code><a href="https://httr2.r-lib.org/reference/resps_successes.html" class="external-link">httr2::resps_data()</a></code> for
-examples.</p>
+the parsed responses are concatenated when possible. Unlike
+<a href="https://httr2.r-lib.org/reference/resps_successes.html" class="external-link">httr2::resps_data</a>, this function does not concatenate raw vector
+responses.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

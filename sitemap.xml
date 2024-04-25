@@ -58,10 +58,16 @@
     <loc>https://nectar.api2r.org/reference/nectar-package.html</loc>
   </url>
   <url>
+    <loc>https://nectar.api2r.org/reference/req_modify.html</loc>
+  </url>
+  <url>
     <loc>https://nectar.api2r.org/reference/req_perform_opinionated.html</loc>
   </url>
   <url>
     <loc>https://nectar.api2r.org/reference/req_prepare.html</loc>
+  </url>
+  <url>
+    <loc>https://nectar.api2r.org/reference/req_setup.html</loc>
   </url>
   <url>
     <loc>https://nectar.api2r.org/reference/resp_parse.html</loc>
@@ -71,6 +77,9 @@
   </url>
   <url>
     <loc>https://nectar.api2r.org/reference/stabilize_string.html</loc>
+  </url>
+  <url>
+    <loc>https://nectar.api2r.org/reference/url_normalize.html</loc>
   </url>
   <url>
     <loc>https://nectar.api2r.org/reference/url_path_append.html</loc>
