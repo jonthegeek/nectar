@@ -24,6 +24,8 @@
 #' @param response_parser A function to parse the server response (`resp`).
 #'   Defaults to [httr2::resp_body_json()], since JSON responses are common. Set
 #'   this to `NULL` to return the raw response from [httr2::req_perform()].
+#' @param response_parser_args An optional list of arguments to pass to the
+#'   `response_parser` function (in addition to `resp`).
 #' @param security_fn A function to use to authenticate the request. By default
 #'   (`NULL`), no authentication is performed.
 #' @param security_args An optional list of arguments to the `security_fn`

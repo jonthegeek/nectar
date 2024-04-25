@@ -7,6 +7,11 @@
 #' @inheritParams .shared-parameters
 #' @inheritParams httr2::req_perform_iterative
 #' @inheritParams rlang::args_dots_empty
+#' @param next_req An optional function that takes the previous response
+#'   (`resp`) to generate the next request in a call to
+#'   [httr2::req_perform_iterative()]. This function can usually be generated
+#'   using one of the iteration helpers described in
+#'   [httr2::iterate_with_offset()].
 #' @param max_reqs The maximum number of separate requests to perform. Passed to
 #'   the max_reqs argument of [httr2::req_perform_iterative()] when `next_req`
 #'   is supplied. The default `2` should likely be changed to `Inf` after you

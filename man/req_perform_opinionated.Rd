@@ -17,9 +17,11 @@ req_perform_opinionated(
 
 \item{...}{These dots are for future extensions and must be empty.}
 
-\item{next_req}{A function that takes the previous response (\code{resp}) and
-request (\code{req}) and returns a \link[httr2]{request} for the next page or \code{NULL} if
-the iteration should terminate. See below for more details.}
+\item{next_req}{An optional function that takes the previous response
+(\code{resp}) to generate the next request in a call to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
+using one of the iteration helpers described in
+\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}.}
 
 \item{max_reqs}{The maximum number of separate requests to perform. Passed to
 the max_reqs argument of \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}} when \code{next_req}

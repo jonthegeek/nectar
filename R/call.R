@@ -8,13 +8,6 @@
 #'
 #' @inheritParams .shared-parameters
 #' @inheritParams req_perform_opinionated
-#' @param response_parser_args An optional list of arguments to pass to the
-#'   `response_parser` function (in addition to `resp`).
-#' @param next_req An optional function that takes the previous response
-#'   (`resp`) to generate the next request in a call to
-#'   [httr2::req_perform_iterative()]. This function can usually be generated
-#'   using one of the iteration helpers described in
-#'   [httr2::iterate_with_offset()].
 #'
 #' @return The response from the API, parsed by the `response_parser`.
 #' @export
@@ -41,7 +34,7 @@ call_api <- function(base_url,
     method = method,
     user_agent = user_agent
   )
-  req <- .req_security_apply(req, security_fn, security_args)
+  req <- do_if_defined(req, security_fn, !!!security_args)
   resp <- req_perform_opinionated(
     req,
     next_req = next_req,
@@ -54,13 +47,4 @@ call_api <- function(base_url,
     !!!response_parser_args
   )
   return(resp)
-}
-
-.req_security_apply <- function(req, security_fn, security_args) {
-  if (length(security_fn)) {
-    req <- rlang::inject(
-      security_fn(req, !!!security_args)
-    )
-  }
-  return(req)
 }

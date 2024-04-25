@@ -62,3 +62,44 @@ url_path_append <- function(url, ...) {
   path <- gsub("/+", "/", path)
   return(sub("/$", "", path))
 }
+
+#' Use a provided function
+#'
+#' When constructing API calls programmatically, you may encounter situations
+#' where an upstream task should indicate which function to apply. For example,
+#' one endpoint might use a special security function that isn't used by other
+#' endpoints. This function exists to make coding such situations easier.
+#'
+#' @param x An object to potentially modify, such as an [httr2::request()]
+#'   object.
+#' @param fn A function to apply to `x`. If `fn` is `NULL`, `x` is returned
+#'   unchanged.
+#' @param ... Additional arguments to pass to `fn`.
+#'
+#' @return The object, potentially modified.
+#' @export
+#'
+#' @examples
+#' build_api_req <- function(endpoint, security_fn = NULL, ...) {
+#'   req <- httr2::request("https://example.com")
+#'   req <- httr2::req_url_path_append(req, endpoint)
+#'   do_if_defined(req, security_fn, ...)
+#' }
+#'
+#' # Most endpoints of this API do not require authentication.
+#' unsecure_req <- build_api_req("unsecure_endpoint")
+#' unsecure_req$headers
+#'
+#' # But one endpoint requires
+#' secure_req <- build_api_req(
+#'   "secure_endpoint", httr2::req_auth_bearer_token, "secret-token"
+#' )
+#' secure_req$headers$Authorization
+do_if_defined <- function(x, fn = NULL, ...) {
+  if (is.function(fn)) {
+    # Higher-level calls can include !!!'ed arguments.
+    dots <- rlang::list2(...)
+    x <- rlang::inject(fn(x, !!!dots))
+  }
+  return(x)
+}

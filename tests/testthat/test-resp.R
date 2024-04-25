@@ -62,3 +62,18 @@ test_that("resp_parse parses lists of httr2_responses", {
   test_result <- resp_parse(mock_response, response_parser = parser)
   expect_identical(test_result, 1:6)
 })
+
+test_that("resp_parse works for raw results", {
+  # reqs <- list(
+  #   httr2::request("https://httr2.r-lib.org/logo.png"),
+  #   httr2::request("https://docs.ropensci.org/magick/logo.png")
+  # )
+  # resps <- httr2::req_perform_sequential(reqs)
+  # saveRDS(resps, testthat::test_path("fixtures", "raw_resps.rds"))
+  resps <- readRDS(testthat::test_path("fixtures", "raw_resps.rds"))
+  test_result <- resp_parse(
+    resps,
+    response_parser = httr2::resp_body_raw
+  )
+  expect_equal(length(test_result), length(resps))
+})

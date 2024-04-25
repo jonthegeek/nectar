@@ -23,7 +23,7 @@ req_prepare <- function(base_url,
   req <- .req_query_flatten(req, query)
   req <- .req_body_auto(req, body, mime_type)
   req <- .req_method_apply(req, method)
-  req <- .req_user_agent_apply(req, user_agent)
+  req <- httr2::req_user_agent(req, user_agent)
   return(req)
 }
 
@@ -45,11 +45,4 @@ req_prepare <- function(base_url,
     }
   }
   return(httr2::req_method(req, method))
-}
-
-.req_user_agent_apply <- function(req, user_agent) {
-  if (length(user_agent)) {
-    req <- httr2::req_user_agent(req, user_agent)
-  }
-  return(req)
 }
