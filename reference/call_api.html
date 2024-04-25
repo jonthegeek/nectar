@@ -73,6 +73,7 @@ around the <code>req_</code> family of functions, such as <code><a href="https:/
 <span>  response_parser_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  next_req <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  max_reqs <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  max_tries_per_req <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  user_agent <span class="op">=</span> <span class="st">"nectar (https://nectar.api2r.org)"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -137,13 +138,21 @@ this to <code>NULL</code> to return the raw response from <code><a href="https:/
 <dd><p>An optional function that takes the previous response
 (<code>resp</code>) to generate the next request in a call to
 <code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code>. This function can usually be generated
-using <code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_offset()</a></code>, <code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_cursor()</a></code>, or
-<code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_link_url()</a></code>.</p></dd>
+using one of the iteration helpers described in
+<code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_offset()</a></code>.</p></dd>
 
 
 <dt>max_reqs</dt>
-<dd><p>The maximum number of requests to perform. Use <code>Inf</code> to
-perform all requests until <code>next_req()</code> returns <code>NULL</code>.</p></dd>
+<dd><p>The maximum number of separate requests to perform. Passed to
+the max_reqs argument of <code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code> when <code>next_req</code>
+is supplied. The default <code>2</code> should likely be changed to <code>Inf</code> after you
+validate the function.</p></dd>
+
+
+<dt>max_tries_per_req</dt>
+<dd><p>The maximum number of times to attempt each
+individual request. Passed to the <code>max_tries</code> argument of
+<code><a href="https://httr2.r-lib.org/reference/req_retry.html" class="external-link">httr2::req_retry()</a></code>.</p></dd>
 
 
 <dt>user_agent</dt>
