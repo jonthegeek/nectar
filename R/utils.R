@@ -24,7 +24,7 @@ compact_nested_list <- function(lst) {
 #' Discard empty elements
 #'
 #' @param lst A (nested) list to filter.
-#' @inheritParams .shared-parameters
+#' @param depth The current recursion depth.
 #'
 #' @return The list, minus empty elements and branches.
 #' @keywords internal
@@ -56,6 +56,29 @@ url_path_append <- function(url, ...) {
   return(httr2::url_build(url))
 }
 
+#' Normalize a URL
+#'
+#' This function normalizes a URL by adding a trailing slash to the base if it
+#' is missing. It is mainly for testing and other comparisons.
+#'
+#' @param url A URL to normalize.
+#'
+#' @return A normalized URL
+#' @export
+#'
+#' @examples
+#' identical(
+#'   url_normalize("https://example.com"),
+#'   url_normalize("https://example.com/")
+#' )
+#' identical(
+#'   url_normalize("https://example.com?param=value"),
+#'   url_normalize("https://example.com/?param=value")
+#' )
+url_normalize <- function(url) {
+  url_path_append(url)
+}
+
 .path_merge <- function(...) {
   path <- paste(c(...), collapse = "/")
   path <- sub("^([^/])", "/\\1", path)
@@ -70,7 +93,7 @@ url_path_append <- function(url, ...) {
 #' one endpoint might use a special security function that isn't used by other
 #' endpoints. This function exists to make coding such situations easier.
 #'
-#' @param x An object to potentially modify, such as an [httr2::request()]
+#' @param x An object to potentially modify, such as a [httr2::request()]
 #'   object.
 #' @param fn A function to apply to `x`. If `fn` is `NULL`, `x` is returned
 #'   unchanged.

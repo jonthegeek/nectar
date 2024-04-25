@@ -8,7 +8,7 @@ test_that("req_prepare() uses query parameters", {
     user_agent = NULL
   )
   expect_identical(
-    test_result$url,
+    url_normalize(test_result$url),
     "https://example.com/?foo=bar&baz=qux"
   )
 })
@@ -23,7 +23,7 @@ test_that("req_prepare() smushes & concatenates multi-value query parameters", {
     user_agent = NULL
   )
   expect_identical(
-    test_result$url,
+    url_normalize(test_result$url),
     "https://example.com/?foo=bar&baz=qux%2Cquux"
   )
 })
@@ -38,7 +38,7 @@ test_that("req_prepare() removes empty query parameters", {
     user_agent = NULL
   )
   expect_identical(
-    test_result$url,
+    url_normalize(test_result$url),
     "https://example.com/?bar=baz"
   )
 })

@@ -14,8 +14,9 @@
 #'   (in addition to `resp`).
 #'
 #' @return The response parsed by the `response_parser`. If `resp` was a list,
-#'   the parsed responses are concatenated. See [httr2::resps_data()] for
-#'   examples.
+#'   the parsed responses are concatenated when possible. Unlike
+#'   [httr2::resps_data], this function does not concatenate raw vector
+#'   responses.
 #' @export
 resp_parse <- function(resp, ...) {
   UseMethod("resp_parse")
@@ -42,7 +43,9 @@ resp_parse.default <- function(resp,
   )
 }
 
-#' @inheritParams .shared-parameters
+#' @param response_parser A function to parse the server response (`resp`).
+#'   Defaults to [httr2::resp_body_json()], since JSON responses are common. Set
+#'   this to `NULL` to return the raw response from [httr2::req_perform()].
 #' @export
 #' @rdname resp_parse
 resp_parse.httr2_response <- function(resp,

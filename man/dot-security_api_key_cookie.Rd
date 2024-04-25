@@ -7,12 +7,12 @@
 .security_api_key_cookie(req, ..., path)
 }
 \arguments{
-\item{req}{An \code{\link[httr2:request]{httr2::request()}} object.}
+\item{req}{A \code{\link[httr2:request]{httr2::request()}} object.}
 
 \item{path}{The path to the cookie.}
 }
 \value{
-An \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object.
 }
 \description{
 Authenticate with an API key in a cookie

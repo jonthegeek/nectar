@@ -7,7 +7,7 @@
 do_if_defined(x, fn = NULL, ...)
 }
 \arguments{
-\item{x}{An object to potentially modify, such as an \code{\link[httr2:request]{httr2::request()}}
+\item{x}{An object to potentially modify, such as a \code{\link[httr2:request]{httr2::request()}}
 object.}
 
 \item{fn}{A function to apply to \code{x}. If \code{fn} is \code{NULL}, \code{x} is returned

@@ -11,6 +11,8 @@ Description: An opinionated framework for use within api-wrapping R
 License: MIT + file LICENSE
 URL: https://nectar.api2r.org, https://github.com/jonthegeek/nectar
 BugReports: https://github.com/jonthegeek/nectar/issues
+Depends: 
+    R (>= 3.5.0)
 Imports: 
     cli,
     curl,

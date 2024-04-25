@@ -6,6 +6,7 @@
 \usage{
 call_api(
   base_url,
+  ...,
   path = NULL,
   query = NULL,
   body = NULL,
@@ -25,6 +26,8 @@ call_api(
 \item{base_url}{The part of the url that is shared by all calls to the API.
 In some cases there may be a family of base URLs, from which you will need
 to choose one.}
+
+\item{...}{These dots are for future extensions and must be empty.}
 
 \item{path}{The route to an API endpoint. Optionally, a list with the path
 plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
@@ -84,4 +87,8 @@ intended to be used inside an API client package. It serves as a wrapper
 around the \code{req_} family of functions, such as \code{\link[httr2:request]{httr2::request()}}, as well as
 \code{\link[httr2:req_perform]{httr2::req_perform()}} and \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}, and, by default,
 \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}.
+}
+\seealso{
+\code{\link[=req_setup]{req_setup()}}, \code{\link[=req_modify]{req_modify()}}, \code{\link[=req_perform_opinionated]{req_perform_opinionated()}},
+\code{\link[=resp_parse]{resp_parse()}}, and \code{\link[=do_if_defined]{do_if_defined()}} for finer control of the process.
 }

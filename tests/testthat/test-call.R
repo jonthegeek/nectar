@@ -28,7 +28,7 @@ test_that("call_api() applies security", {
     )
   )
   expect_identical(
-    test_result$url,
+    url_normalize(test_result$url),
     "https://example.com/?security=set"
   )
 })
