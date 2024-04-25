@@ -36,6 +36,9 @@ the request.}
 Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are common. Set
 this to \code{NULL} to return the raw response from \code{\link[httr2:req_perform]{httr2::req_perform()}}.}
 
+\item{response_parser_args}{An optional list of arguments to pass to the
+\code{response_parser} function (in addition to \code{resp}).}
+
 \item{security_fn}{A function to use to authenticate the request. By default
 (\code{NULL}), no authentication is performed.}
 

@@ -48,22 +48,33 @@ resp_parse.default <- function(resp,
 resp_parse.httr2_response <- function(resp,
                                       ...,
                                       response_parser = httr2::resp_body_json) {
-  if (length(response_parser)) {
-    # Higher-level calls can include !!!'ed arguments.
-    dots <- rlang::list2(...)
-    return(rlang::inject(response_parser(resp, !!!dots)))
-  }
-  return(resp)
+  do_if_defined(resp, response_parser, ...)
 }
 
 #' @export
 resp_parse.list <- function(resp,
                             ...,
                             response_parser = httr2::resp_body_json) {
-  httr2::resps_data(
+  resp_parsed <- .resp_parse_impl(resp, response_parser, ...)
+  .resp_combine(resp_parsed)
+}
+
+.resp_parse_impl <- function(resp, response_parser, ...) {
+  # httr2::resps_data concatenates raw vectors, which is almost certainly not
+  # what users would want. For example, images get combined to be on top of one
+  # another.
+  lapply(
     httr2::resps_successes(resp),
-    resp_data = function(resp) {
-      resp_parse(resp, response_parser = response_parser, ...)
-    }
+    resp_parse,
+    response_parser = response_parser,
+    ...
   )
+}
+
+.resp_combine <- function(resp_parsed) {
+  purrr::discard(resp_parsed, is.null)
+  if (inherits(resp_parsed[[1]], "raw")) {
+    return(resp_parsed)
+  }
+  vctrs::list_unchop(resp_parsed)
 }

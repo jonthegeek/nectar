@@ -20,7 +20,8 @@ Imports:
     jsonlite,
     purrr,
     rlang,
-    stbl
+    stbl,
+    vctrs
 Suggests: 
     covr,
     testthat (>= 3.0.0)
