@@ -1,9 +1,15 @@
-.req_query_flatten <- function(req, query) {
+#' Add non-empty query elements to a request
+#'
+#' @inheritParams .shared-parameters
+#' @param query An optional list or character vector of parameters to pass in
+#'   the query portion of the request. Can also include a `.multi` argument to
+#'   pass to [httr2::req_url_query()] to control how elements containing
+#'   multiple values are handled.
+#'
+#' @inherit .shared-request return
+#' @keywords internal
+.req_query_flatten <- function(req,
+                               query) {
   query <- purrr::discard(query, is.null)
-  query <- purrr::map_chr(query, .prepare_query_element)
-  return(httr2::req_url_query(req, !!!query))
-}
-
-.prepare_query_element <- function(query_element) {
-  return(paste(unlist(query_element), collapse = ","))
+  rlang::inject(httr2::req_url_query(req, !!!query))
 }

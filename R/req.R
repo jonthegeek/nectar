@@ -35,14 +35,10 @@ req_setup <- function(base_url,
 #' path-specific properties.
 #'
 #' @inheritParams rlang::args_dots_empty
+#' @inheritParams .req_path_append
 #' @inheritParams .req_body_auto
-#' @inheritParams .shared-parameters
-#' @param method If the method is something other than GET or POST, supply it.
-#'   Case is ignored.
-#' @param path The route to an API endpoint. Optionally, a list with the path
-#'   plus variables to [glue::glue()] into the path.
-#' @param query An optional list of parameters to pass in the query portion of
-#'   the request.
+#' @inheritParams .req_method_apply
+#' @inheritParams .req_query_flatten
 #'
 #' @inherit .shared-request return
 #' @export
@@ -101,20 +97,5 @@ req_prepare <- function(base_url,
     mime_type = mime_type,
     method = method
   )
-  return(req)
-}
-
-.req_path_append <- function(req, path) {
-  if (length(path)) {
-    path <- rlang::inject(glue::glue(!!!path))
-    req <- httr2::req_url_path_append(req, path)
-  }
-  return(req)
-}
-
-.req_method_apply <- function(req, method) {
-  if (length(method)) {
-    return(httr2::req_method(req, method))
-  }
   return(req)
 }

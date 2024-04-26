@@ -29,11 +29,15 @@ to choose one.}
 
 \item{...}{These dots are for future extensions and must be empty.}
 
-\item{path}{The route to an API endpoint. Optionally, a list with the path
-plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
+\item{path}{The route to an API endpoint. Optionally, a list or character
+vector with the path as one or more unnamed arguments (which will be
+concatenated with "/") plus named arguments to \code{\link[glue:glue]{glue::glue()}} into the
+path.}
 
-\item{query}{An optional list of parameters to pass in the query portion of
-the request.}
+\item{query}{An optional list or character vector of parameters to pass in
+the query portion of the request. Can also include a \code{.multi} argument to
+pass to \code{\link[httr2:req_url]{httr2::req_url_query()}} to control how elements containing
+multiple values are handled.}
 
 \item{body}{An object to use as the body of the request. If any component of
 the body is a path, pass it through \code{\link[fs:path]{fs::path()}} or otherwise give it the
@@ -90,5 +94,5 @@ around the \code{req_} family of functions, such as \code{\link[httr2:request]{h
 }
 \seealso{
 \code{\link[=req_setup]{req_setup()}}, \code{\link[=req_modify]{req_modify()}}, \code{\link[=req_perform_opinionated]{req_perform_opinionated()}},
-\code{\link[=resp_parse]{resp_parse()}}, and \code{\link[=do_if_defined]{do_if_defined()}} for finer control of the process.
+\code{\link[=resp_parse]{resp_parse()}}, and \code{\link[=do_if_fn_defined]{do_if_fn_defined()}} for finer control of the process.
 }
