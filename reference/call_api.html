@@ -92,13 +92,17 @@ to choose one.</p></dd>
 
 
 <dt>path</dt>
-<dd><p>The route to an API endpoint. Optionally, a list with the path
-plus variables to <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code> into the path.</p></dd>
+<dd><p>The route to an API endpoint. Optionally, a list or character
+vector with the path as one or more unnamed arguments (which will be
+concatenated with "/") plus named arguments to <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code> into the
+path.</p></dd>
 
 
 <dt>query</dt>
-<dd><p>An optional list of parameters to pass in the query portion of
-the request.</p></dd>
+<dd><p>An optional list or character vector of parameters to pass in
+the query portion of the request. Can also include a <code>.multi</code> argument to
+pass to <code><a href="https://httr2.r-lib.org/reference/req_url.html" class="external-link">httr2::req_url_query()</a></code> to control how elements containing
+multiple values are handled.</p></dd>
 
 
 <dt>body</dt>
@@ -175,7 +179,7 @@ It's polite to set the user agent to identify your package, such as
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="req_setup.html">req_setup()</a></code>, <code><a href="req_modify.html">req_modify()</a></code>, <code><a href="req_perform_opinionated.html">req_perform_opinionated()</a></code>,
-<code><a href="resp_parse.html">resp_parse()</a></code>, and <code><a href="do_if_defined.html">do_if_defined()</a></code> for finer control of the process.</p></div>
+<code><a href="resp_parse.html">resp_parse()</a></code>, and <code><a href="do_if_fn_defined.html">do_if_fn_defined()</a></code> for finer control of the process.</p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

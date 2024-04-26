@@ -79,13 +79,17 @@ to choose one.</p></dd>
 
 
 <dt>path</dt>
-<dd><p>The route to an API endpoint. Optionally, a list with the path
-plus variables to <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code> into the path.</p></dd>
+<dd><p>The route to an API endpoint. Optionally, a list or character
+vector with the path as one or more unnamed arguments (which will be
+concatenated with "/") plus named arguments to <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code> into the
+path.</p></dd>
 
 
 <dt>query</dt>
-<dd><p>An optional list of parameters to pass in the query portion of
-the request.</p></dd>
+<dd><p>An optional list or character vector of parameters to pass in
+the query portion of the request. Can also include a <code>.multi</code> argument to
+pass to <code><a href="https://httr2.r-lib.org/reference/req_url.html" class="external-link">httr2::req_url_query()</a></code> to control how elements containing
+multiple values are handled.</p></dd>
 
 
 <dt>body</dt>
