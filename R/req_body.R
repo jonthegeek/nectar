@@ -47,10 +47,7 @@
                            body,
                            mime_type = NULL) {
   body <- .prepare_body(body, mime_type)
-  if (length(body)) {
-    req <- .add_body(req, body)
-  }
-  return(req)
+  .do_if_args_defined(req, .add_body, body = body)
 }
 
 .add_body <- function(req, body) {

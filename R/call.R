@@ -7,7 +7,7 @@
 #' [httr2::resp_body_json()].
 #'
 #' @seealso [req_setup()], [req_modify()], [req_perform_opinionated()],
-#'   [resp_parse()], and [do_if_defined()] for finer control of the process.
+#'   [resp_parse()], and [do_if_fn_defined()] for finer control of the process.
 #'
 #' @inheritParams rlang::args_dots_empty
 #' @inheritParams req_setup
@@ -48,7 +48,7 @@ call_api <- function(base_url,
     mime_type = mime_type,
     method = method
   )
-  req <- do_if_defined(req, security_fn, !!!security_args)
+  req <- do_if_fn_defined(req, security_fn, !!!security_args)
   resp <- req_perform_opinionated(
     req,
     next_req = next_req,

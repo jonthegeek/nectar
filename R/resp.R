@@ -51,7 +51,7 @@ resp_parse.default <- function(resp,
 resp_parse.httr2_response <- function(resp,
                                       ...,
                                       response_parser = httr2::resp_body_json) {
-  do_if_defined(resp, response_parser, ...)
+  do_if_fn_defined(resp, response_parser, ...)
 }
 
 #' @export

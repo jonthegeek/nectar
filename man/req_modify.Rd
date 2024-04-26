@@ -19,11 +19,15 @@ req_modify(
 
 \item{...}{These dots are for future extensions and must be empty.}
 
-\item{path}{The route to an API endpoint. Optionally, a list with the path
-plus variables to \code{\link[glue:glue]{glue::glue()}} into the path.}
+\item{path}{The route to an API endpoint. Optionally, a list or character
+vector with the path as one or more unnamed arguments (which will be
+concatenated with "/") plus named arguments to \code{\link[glue:glue]{glue::glue()}} into the
+path.}
 
-\item{query}{An optional list of parameters to pass in the query portion of
-the request.}
+\item{query}{An optional list or character vector of parameters to pass in
+the query portion of the request. Can also include a \code{.multi} argument to
+pass to \code{\link[httr2:req_url]{httr2::req_url_query()}} to control how elements containing
+multiple values are handled.}
 
 \item{body}{An object to use as the body of the request. If any component of
 the body is a path, pass it through \code{\link[fs:path]{fs::path()}} or otherwise give it the

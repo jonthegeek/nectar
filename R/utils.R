@@ -1,3 +1,5 @@
+# compact_nested_list ----------------------------------------------------------
+
 #' Discard empty elements
 #'
 #' Discard empty elements in nested lists.
@@ -34,6 +36,8 @@ compact_nested_list <- function(lst) {
   }
   return(purrr::compact(lst))
 }
+
+# urls -------------------------------------------------------------------------
 
 #' Add path elements to a URL
 #'
@@ -86,6 +90,8 @@ url_normalize <- function(url) {
   return(sub("/$", "", path))
 }
 
+# Do if ------------------------------------------------------------------------
+
 #' Use a provided function
 #'
 #' When constructing API calls programmatically, you may encounter situations
@@ -106,7 +112,7 @@ url_normalize <- function(url) {
 #' build_api_req <- function(endpoint, security_fn = NULL, ...) {
 #'   req <- httr2::request("https://example.com")
 #'   req <- httr2::req_url_path_append(req, endpoint)
-#'   do_if_defined(req, security_fn, ...)
+#'   do_if_fn_defined(req, security_fn, ...)
 #' }
 #'
 #' # Most endpoints of this API do not require authentication.
@@ -118,11 +124,32 @@ url_normalize <- function(url) {
 #'   "secure_endpoint", httr2::req_auth_bearer_token, "secret-token"
 #' )
 #' secure_req$headers$Authorization
-do_if_defined <- function(x, fn = NULL, ...) {
+do_if_fn_defined <- function(x, fn = NULL, ...) {
   if (is.function(fn)) {
     # Higher-level calls can include !!!'ed arguments.
     dots <- rlang::list2(...)
     x <- rlang::inject(fn(x, !!!dots))
+  }
+  return(x)
+}
+
+#' Use a function if args are provided
+#'
+#' @param x An object to potentially modify, such as a [httr2::request()]
+#'   object.
+#' @param fn A function to apply to `x`. If `fn` is `NULL`, `x` is returned
+#'   unchanged.
+#' @param ... Additional arguments to pass to `fn`.
+#'
+#' @return The object, potentially modified.
+#' @keywords internal
+.do_if_args_defined <- function(x, fn = NULL, ...) {
+  if (is.function(fn)) {
+    dots <- rlang::list2(...)
+    dots <- purrr::discard(dots, is.null)
+    if (length(dots)) {
+      x <- rlang::inject(fn(x, !!!dots))
+    }
   }
   return(x)
 }
