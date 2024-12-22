@@ -16,7 +16,7 @@ stabilize_string(
 \item{x}{The argument to stabilize.}
 
 \item{...}{
-  Arguments passed on to \code{\link[stbl:stabilize_chr_scalar]{stbl::stabilize_chr_scalar}}
+  Arguments passed on to \code{\link[stbl:stabilize_chr]{stbl::stabilize_chr_scalar}}
   \describe{
     \item{\code{x_class}}{Character. The class name of \code{x} to use in error messages. Use
 this if you remove a special class from \code{x} before checking its coercion,

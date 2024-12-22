@@ -21,21 +21,21 @@ The object, potentially modified.
 \description{
 When constructing API calls programmatically, you may encounter situations
 where an upstream task should indicate which function to apply. For example,
-one endpoint might use a special security function that isn't used by other
+one endpoint might use a special auth function that isn't used by other
 endpoints. This function exists to make coding such situations easier.
 }
 \examples{
-build_api_req <- function(endpoint, security_fn = NULL, ...) {
+build_api_req <- function(endpoint, auth_fn = NULL, ...) {
   req <- httr2::request("https://example.com")
   req <- httr2::req_url_path_append(req, endpoint)
-  do_if_fn_defined(req, security_fn, ...)
+  do_if_fn_defined(req, auth_fn, ...)
 }
 
 # Most endpoints of this API do not require authentication.
 unsecure_req <- build_api_req("unsecure_endpoint")
 unsecure_req$headers
 
-# But one endpoint requires
+# But one endpoint requires authentication.
 secure_req <- build_api_req(
   "secure_endpoint", httr2::req_auth_bearer_token, "secret-token"
 )
