@@ -4,14 +4,14 @@
 #' often, provide other information about the user). This function helps to
 #' apply those keys to requests.
 #'
-#' @inheritParams .shared-parameters
-#' @param location Where the API key should be passed. One of `"header"`
-#'   (default), `"query"`, or `"cookie"`.
+#' @inheritParams .shared-params
+#' @param location (`length-1 character`) Where the API key should be passed.
+#'   One of `"header"` (default), `"query"`, or `"cookie"`.
 #' @param ... Additional parameters depending on the location of the API key.
-#'   * `parameter_name` ("header" or "query" only) The name of the parameter to
+#'   * `parameter_name` (`length-1 character`, "header" or "query" only) The name of the parameter to
 #'   use in the header or query.
-#'   * `api_key` ("header" or "query" only) The API key to use.
-#'   * `path` ("cookie" only) The location of the cookie.
+#'   * `api_key` (`length-1 character`, "header" or "query" only) The API key to use.
+#'   * `path` (`length-1 character`, "cookie" only) The location of the cookie.
 #'
 #' @inherit .shared-request return
 #' @export
@@ -27,9 +27,7 @@ req_auth_api_key <- function(req,
 
 #' Authenticate with an API key in the header of the request
 #'
-#' @inheritParams .shared-parameters
-#' @param parameter_name The name to use for the API key.
-#' @param api_key The API key to use.
+#' @inheritParams .shared-params
 #'
 #' @inherit .shared-request return
 #' @keywords internal
@@ -47,9 +45,7 @@ req_auth_api_key <- function(req,
 
 #' Authenticate with an API key in the query of the request
 #'
-#' @inheritParams .shared-parameters
-#' @param parameter_name The name to use for the API key.
-#' @param api_key The API key to use.
+#' @inheritParams .shared-params
 #'
 #' @inherit .shared-request return
 #' @keywords internal
@@ -63,12 +59,13 @@ req_auth_api_key <- function(req,
 
 #' Authenticate with an API key in a cookie
 #'
-#' @inheritParams .shared-parameters
-#' @param file_path The path to the cookie.
+#' @inheritParams .shared-params
+#' @param file_path (`length-1 character`, optional) The path to the cookie. If
+#'   no value is provided this function returns `req` unchanged.
 #'
 #' @inherit .shared-request return
 #' @keywords internal
-.req_auth_api_key_cookie <- function(req, ..., file_path) { # nocov start
+.req_auth_api_key_cookie <- function(req, ..., file_path = NULL) { # nocov start
   rlang::check_dots_empty()
   if (length(file_path) && nchar(file_path)) {
     req <- httr2::req_cookie_preserve(req, file_path)

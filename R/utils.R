@@ -96,7 +96,7 @@ url_normalize <- function(url) {
 #'
 #' When constructing API calls programmatically, you may encounter situations
 #' where an upstream task should indicate which function to apply. For example,
-#' one endpoint might use a special security function that isn't used by other
+#' one endpoint might use a special auth function that isn't used by other
 #' endpoints. This function exists to make coding such situations easier.
 #'
 #' @param x An object to potentially modify, such as a [httr2::request()]
@@ -109,17 +109,17 @@ url_normalize <- function(url) {
 #' @export
 #'
 #' @examples
-#' build_api_req <- function(endpoint, security_fn = NULL, ...) {
+#' build_api_req <- function(endpoint, auth_fn = NULL, ...) {
 #'   req <- httr2::request("https://example.com")
 #'   req <- httr2::req_url_path_append(req, endpoint)
-#'   do_if_fn_defined(req, security_fn, ...)
+#'   do_if_fn_defined(req, auth_fn, ...)
 #' }
 #'
 #' # Most endpoints of this API do not require authentication.
 #' unsecure_req <- build_api_req("unsecure_endpoint")
 #' unsecure_req$headers
 #'
-#' # But one endpoint requires
+#' # But one endpoint requires authentication.
 #' secure_req <- build_api_req(
 #'   "secure_endpoint", httr2::req_auth_bearer_token, "secret-token"
 #' )
@@ -152,4 +152,29 @@ do_if_fn_defined <- function(x, fn = NULL, ...) {
     }
   }
   return(x)
+}
+
+# Calling package information --------------------------------------------------
+
+#' Get calling package name
+#'
+#' @inheritParams .shared-params
+#' @returns The package name, or `NULL` (invisibly). This function is intended
+#'   to be used in other nectar functions to automatically detect the calling
+#'   package name.
+#' @keywords internal
+get_pkg_name <- function(call = rlang::caller_env()) {
+  utils::packageName(env = call)
+}
+
+#' Get package numeric version
+#'
+#' @inheritParams .shared-params
+#' @returns The numeric version of the package.
+#' @keywords internal
+.get_pkg_version <- function(pkg_name = get_pkg_name(call),
+                             call = rlang::caller_env()) {
+  pkg_name <- stabilize_string(pkg_name, call = call)
+  rlang::check_installed(pkg_name, "to find the package version.", call = call)
+  return(as.character(utils::packageVersion(pkg_name)))
 }

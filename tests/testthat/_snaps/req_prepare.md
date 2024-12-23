@@ -2,7 +2,7 @@
 
     Code
       test_result <- req_prepare(base_url = "https://example.com", body = list(foo = "bar",
-        baz = fs::path(test_path("img-test.png"))), user_agent = NULL)
+        baz = fs::path(test_path("fixtures", "img-test.png"))))
       test_result$body
     Output
       $data

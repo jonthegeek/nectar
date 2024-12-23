@@ -6,24 +6,20 @@ test_that("call_api() calls an API", {
     }
   )
   expect_no_error({
-    test_result <- call_api(
-      base_url = "https://example.com",
-      user_agent = NULL
-    )
+    test_result <- call_api(base_url = "https://example.com")
   })
   expect_true(test_result)
 })
 
-test_that("call_api() applies security", {
+test_that("call_api() applies auth", {
   local_mocked_bindings(
     req_perform_opinionated = function(req, ...) req,
     resp_parse = function(resp, ...) resp
   )
   test_result <- call_api(
     base_url = "https://example.com",
-    user_agent = NULL,
-    security_fn = httr2::req_url_query,
-    security_args = list(
+    auth_fn = httr2::req_url_query,
+    auth_args = list(
       security = "set"
     )
   )
@@ -44,7 +40,6 @@ test_that("call_api() uses response_parser", {
   }
   test_result <- call_api(
     base_url = "https://example.com",
-    user_agent = NULL,
     response_parser = parser
   )
   expect_true(test_result)

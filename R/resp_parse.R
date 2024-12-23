@@ -7,9 +7,7 @@
 #' multiple responses have been returned, and parses the responses
 #' appropriately.
 #'
-#' @param resp A single [httr2::response()] object (as returned by
-#'   [httr2::req_perform()]) or a list of such objects (as returned by
-#'   [httr2::req_perform_iterative()]).
+#' @inheritParams .shared-params
 #' @param ... Additional arguments passed on to the `response_parser` function
 #'   (in addition to `resp`).
 #'
@@ -22,12 +20,8 @@ resp_parse <- function(resp, ...) {
   UseMethod("resp_parse")
 }
 
+#' @inheritParams .shared-params
 #' @export
-#' @param arg An argument name as a string. This argument will be mentioned in
-#'   error messages as the input that is at the origin of a problem.
-#' @param call The execution environment of a currently running function, e.g.
-#'   caller_env(). The function will be mentioned in error messages as the
-#'   source of the error. See the call argument of abort() for more information.
 #' @rdname resp_parse
 resp_parse.default <- function(resp,
                                ...,
@@ -43,9 +37,7 @@ resp_parse.default <- function(resp,
   )
 }
 
-#' @param response_parser A function to parse the server response (`resp`).
-#'   Defaults to [httr2::resp_body_json()], since JSON responses are common. Set
-#'   this to `NULL` to return the raw response from [httr2::req_perform()].
+#' @inheritParams .shared-params
 #' @export
 #' @rdname resp_parse
 resp_parse.httr2_response <- function(resp,
