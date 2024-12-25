@@ -18,6 +18,7 @@
 <url><loc>https://nectar.api2r.org/reference/dot-lib_user_agent_append.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-lib_user_agent_string.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-nectar_user_agent_append.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/dot-next_cursor_finder.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-pkg_user_agent_append.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_auth_api_key_cookie.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_auth_api_key_header.html</loc></url>
@@ -31,6 +32,7 @@
 <url><loc>https://nectar.api2r.org/reference/dot-user_agent_remove.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/get_pkg_name.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/index.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/iterate_with_json_cursor.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/nectar-package.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_auth_api_key.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_init.html</loc></url>
