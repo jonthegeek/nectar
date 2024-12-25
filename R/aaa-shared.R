@@ -20,11 +20,14 @@
 #' @param body (multiple types) An object to use as the body of the request. If
 #'   any component of the body is a path, pass it through [fs::path()] or
 #'   otherwise give it the class "fs_path" to indicate that it is a path.
-#' @param call  (`environment`) The environment from which a function was
-#'   called, e.g. [rlang::caller_env()] (the default). The environment will be
-#'   mentioned in error messages as the source of the error. This argument is
-#'   particularly useful for functions that are intended to be called as
-#'   utilities inside other functions.
+#' @param call (`environment`) The environment from which a function was called,
+#'   e.g. [rlang::caller_env()] (the default). The environment will be mentioned
+#'   in error messages as the source of the error. This argument is particularly
+#'   useful for functions that are intended to be called as utilities inside
+#'   other functions.
+#' @param check_type (`length-1 logical`) Whether to check that the response has
+#'   the expected content type. Set to `FALSE` if the response is not
+#'   specifically tagged as the proper type.
 #' @param existing_user_agent (`length-1 character`, optional) An existing user
 #'   agent, such as the value of `req$options$useragent` in a [httr2::request()]
 #'   object.
@@ -48,9 +51,14 @@
 #'   `.multi` argument to pass to [httr2::req_url_query()] to control how
 #'   elements containing multiple values are handled.
 #' @param req (`httr2_request`) A [httr2::request()] object.
-#' @param resp (`httr2_response` or `list`) A single [httr2::response()] object
-#'   (as returned by [httr2::req_perform()]) or a list of such objects (as
-#'   returned by [httr2::req_perform_iterative()]).
+#' @param resp (`httr2_response`) A single [httr2::response()] object (as
+#'   returned by [httr2::req_perform()]).
+#' @param resps (`httr2_response`, `nectar_responses`, or `list`) A single
+#'   [httr2::response()] object (as returned by [httr2::req_perform()]) or a
+#'   list of such objects (as returned by [req_perform_opinionated()] or
+#'   [httr2::req_perform_iterative()]).
+#' @param resp_body_fn A function to extract the body of the response. Default:
+#'   [resp_body_auto()].
 #' @param response_parser (`function`) A function to parse the server response
 #'   (`resp`). Defaults to [httr2::resp_body_json()], since JSON responses are
 #'   common. Set this to `NULL` to return the raw response from

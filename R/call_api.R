@@ -29,7 +29,7 @@ call_api <- function(base_url,
                      method = NULL,
                      auth_fn = NULL,
                      auth_args = list(),
-                     response_parser = httr2::resp_body_json,
+                     response_parser = resp_tidy,
                      response_parser_args = list(),
                      next_req = NULL,
                      max_reqs = Inf,
@@ -47,16 +47,16 @@ call_api <- function(base_url,
     auth_fn = auth_fn,
     auth_args = auth_args
   )
-  resp <- req_perform_opinionated(
+  resps <- req_perform_opinionated(
     req,
     next_req = next_req,
     max_reqs = max_reqs,
     max_tries_per_req = max_tries_per_req
   )
-  resp <- resp_parse(
-    resp,
+  result <- resp_parse(
+    resps,
     response_parser = response_parser,
     !!!response_parser_args
   )
-  return(resp)
+  return(result)
 }

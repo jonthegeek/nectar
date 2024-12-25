@@ -4,14 +4,17 @@
 \alias{.next_cursor_finder}
 \title{Cursor finder factory}
 \usage{
-.next_cursor_finder(next_cursor_path, resp_body_fn)
+.next_cursor_finder(next_cursor_path, resp_body_fn = resp_body_auto)
 }
 \arguments{
 \item{next_cursor_path}{(\code{character}) A vector indicating the path to the
-\code{next_cursor} element in the body of the response.}
+\code{next_cursor} element in the body of the response. For example, for the
+\href{https://api.slack.com/apis/pagination}{Slack API}, this value is
+\code{c("response_metadata", "next_cursor")}, while for the \href{https://api.crossref.org/swagger-ui/index.html}{Crossref Unified Resource API}, this value
+is \code{"next-cursor"}.}
 
-\item{resp_body_fn}{A function to extract the body of the response, such as
-\code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}.}
+\item{resp_body_fn}{A function to extract the body of the response. Default:
+\code{\link[=resp_body_auto]{resp_body_auto()}}.}
 }
 \value{
 A function that returns the next cursor, or \code{NULL} if the next

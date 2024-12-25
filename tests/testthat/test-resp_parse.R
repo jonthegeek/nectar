@@ -1,7 +1,7 @@
 test_that("resp_parse fails gracefully for unsupported classes", {
   expect_error(
     resp_parse(1),
-    class = "nectar_error_unsupported_response_class"
+    class = "nectar_error-unsupported_response_class"
   )
   expect_snapshot(
     {

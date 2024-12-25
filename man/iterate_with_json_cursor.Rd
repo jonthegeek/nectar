@@ -4,14 +4,17 @@
 \alias{iterate_with_json_cursor}
 \title{Iteration helper for json cursors}
 \usage{
-iterate_with_json_cursor(param_name, next_cursor_path)
+iterate_with_json_cursor(param_name = "cursor", next_cursor_path)
 }
 \arguments{
 \item{param_name}{(\verb{length-1 character}) The name of the \code{cursor} parameter
 in the request.}
 
 \item{next_cursor_path}{(\code{character}) A vector indicating the path to the
-\code{next_cursor} element in the body of the response.}
+\code{next_cursor} element in the body of the response. For example, for the
+\href{https://api.slack.com/apis/pagination}{Slack API}, this value is
+\code{c("response_metadata", "next_cursor")}, while for the \href{https://api.crossref.org/swagger-ui/index.html}{Crossref Unified Resource API}, this value
+is \code{"next-cursor"}.}
 }
 \value{
 A function that takes the response and the previous request, and
@@ -22,6 +25,6 @@ This function is intended as a replacement for \code{\link[httr2:iterate_with_of
 for the common situation where the response body is json, and the cursor can
 be "empty" in various ways. Even within a single API, some endpoints might
 return a \code{NULL} \code{next_cursor} to indicate that there are no more pages of
-results, while other endpoints might return \code{""}. This function normalized
+results, while other endpoints might return \code{""}. This function normalizes
 all such results to \code{NULL}.
 }

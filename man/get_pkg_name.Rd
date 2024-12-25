@@ -7,11 +7,11 @@
 get_pkg_name(call = rlang::caller_env())
 }
 \arguments{
-\item{call}{(\code{environment}) The environment from which a function was
-called, e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be
-mentioned in error messages as the source of the error. This argument is
-particularly useful for functions that are intended to be called as
-utilities inside other functions.}
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 The package name, or \code{NULL} (invisibly). This function is intended

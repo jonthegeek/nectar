@@ -5,7 +5,7 @@ test_that("req_prepare() applies user agent", {
   )
   expect_identical(
     test_result$options$useragent,
-    "foo nectar/0.0.0.9003 (https://nectar.api2r.org)"
+    "foo nectar/0.0.0.9004 (https://nectar.api2r.org)"
   )
 })
 

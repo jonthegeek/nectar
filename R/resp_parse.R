@@ -1,38 +1,44 @@
 #' Parse one or more responses
 #'
-#' `httr2` provides two methods for performing requests: [httr2::req_perform()],
-#' which returns a single [httr2::response()] object, and
-#' [httr2::req_perform_iterative()], which returns a list of [httr2::response()]
-#' objects. This function automatically determines whether a single response or
-#' multiple responses have been returned, and parses the responses
-#' appropriately.
+#' @description `r lifecycle::badge("questioning")`
+#'
+#'   If you have implemented the full `nectar` framework, use [resp_tidy()]
+#'   directly to parse your responses. We may continue to support
+#'   `resp_parse()`, but it is most useful as a bridge to the full framework.
+#'
+#'   `httr2` provides two methods for performing requests:
+#'   [httr2::req_perform()], which returns a single [httr2::response()] object,
+#'   and [httr2::req_perform_iterative()], which returns a list of
+#'   [httr2::response()] objects. This function automatically determines whether
+#'   a single response or multiple responses have been returned, and parses the
+#'   responses appropriately.
 #'
 #' @inheritParams .shared-params
 #' @param ... Additional arguments passed on to the `response_parser` function
-#'   (in addition to `resp`).
+#'   (in addition to `resps`).
 #'
-#' @return The response parsed by the `response_parser`. If `resp` was a list,
+#' @return The response parsed by the `response_parser`. If `resps` was a list,
 #'   the parsed responses are concatenated when possible. Unlike
 #'   [httr2::resps_data], this function does not concatenate raw vector
 #'   responses.
 #' @export
-resp_parse <- function(resp, ...) {
+resp_parse <- function(resps, ...) {
   UseMethod("resp_parse")
 }
 
 #' @inheritParams .shared-params
 #' @export
 #' @rdname resp_parse
-resp_parse.default <- function(resp,
+resp_parse.default <- function(resps,
                                ...,
-                               arg = rlang::caller_arg(resp),
+                               arg = rlang::caller_arg(resps),
                                call = rlang::caller_env()) {
-  cli_abort(
+  .nectar_abort(
     c(
       "{.arg {arg}} must be a {.cls list} or a {.cls httr2_response}.",
-      x = "{.arg {arg}} is {.obj_type_friendly {resp}}."
+      x = "{.arg {arg}} is {.obj_type_friendly {resps}}."
     ),
-    class = "nectar_error_unsupported_response_class",
+    error_class = "unsupported_response_class",
     call = call
   )
 }
@@ -40,36 +46,37 @@ resp_parse.default <- function(resp,
 #' @inheritParams .shared-params
 #' @export
 #' @rdname resp_parse
-resp_parse.httr2_response <- function(resp,
+resp_parse.httr2_response <- function(resps,
                                       ...,
-                                      response_parser = httr2::resp_body_json) {
-  do_if_fn_defined(resp, response_parser, ...)
+                                      response_parser = resp_tidy) {
+  do_if_fn_defined(resps, response_parser, ...)
 }
 
 #' @export
-resp_parse.list <- function(resp,
+resp_parse.list <- function(resps,
                             ...,
-                            response_parser = httr2::resp_body_json) {
-  resp_parsed <- .resp_parse_impl(resp, response_parser, ...)
-  .resp_combine(resp_parsed)
+                            response_parser = resp_tidy) {
+  resps_parsed <- .resp_parse_impl(resps, response_parser, ...)
+  .resps_combine(resps_parsed)
 }
 
-.resp_parse_impl <- function(resp, response_parser, ...) {
+.resp_parse_impl <- function(resps, response_parser, ...) {
   # httr2::resps_data concatenates raw vectors, which is almost certainly not
   # what users would want. For example, images get combined to be on top of one
   # another.
   lapply(
-    httr2::resps_successes(resp),
+    httr2::resps_successes(resps),
     resp_parse,
     response_parser = response_parser,
     ...
   )
 }
 
-.resp_combine <- function(resp_parsed) {
-  purrr::discard(resp_parsed, is.null)
-  if (inherits(resp_parsed[[1]], "raw")) {
-    return(resp_parsed)
+.resps_combine <- function(resps_parsed) {
+  purrr::discard(resps_parsed, is.null)
+  if (inherits(resps_parsed[[1]], "raw")) {
+    # This is tested, but covr doesn't believe it.
+    return(resps_parsed) # nocov
   }
-  vctrs::list_unchop(resp_parsed)
+  vctrs::list_unchop(resps_parsed)
 }

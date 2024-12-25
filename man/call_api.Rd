@@ -14,7 +14,7 @@ call_api(
   method = NULL,
   auth_fn = NULL,
   auth_args = list(),
-  response_parser = httr2::resp_body_json,
+  response_parser = resp_tidy,
   response_parser_args = list(),
   next_req = NULL,
   max_reqs = Inf,
