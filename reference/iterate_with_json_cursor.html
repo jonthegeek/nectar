@@ -3,12 +3,12 @@
 for the common situation where the response body is json, and the cursor can
 be "empty" in various ways. Even within a single API, some endpoints might
 return a NULL next_cursor to indicate that there are no more pages of
-results, while other endpoints might return "". This function normalized
+results, while other endpoints might return "". This function normalizes
 all such results to NULL.'><meta property="og:description" content='This function is intended as a replacement for httr2::iterate_with_cursor()
 for the common situation where the response body is json, and the cursor can
 be "empty" in various ways. Even within a single API, some endpoints might
 return a NULL next_cursor to indicate that there are no more pages of
-results, while other endpoints might return "". This function normalized
+results, while other endpoints might return "". This function normalizes
 all such results to NULL.'><meta property="og:image" content="https://nectar.api2r.org/logo.svg"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -17,7 +17,7 @@ all such results to NULL.'><meta property="og:image" content="https://nectar.api
 
     <a class="navbar-brand me-2" href="../index.html">nectar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,13 +46,13 @@ all such results to NULL.'><meta property="og:image" content="https://nectar.api
 for the common situation where the response body is json, and the cursor can
 be "empty" in various ways. Even within a single API, some endpoints might
 return a <code>NULL</code> <code>next_cursor</code> to indicate that there are no more pages of
-results, while other endpoints might return <code>""</code>. This function normalized
+results, while other endpoints might return <code>""</code>. This function normalizes
 all such results to <code>NULL</code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">iterate_with_json_cursor</span><span class="op">(</span><span class="va">param_name</span>, <span class="va">next_cursor_path</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">iterate_with_json_cursor</span><span class="op">(</span>param_name <span class="op">=</span> <span class="st">"cursor"</span>, <span class="va">next_cursor_path</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -66,7 +66,10 @@ in the request.</p></dd>
 
 <dt id="arg-next-cursor-path">next_cursor_path<a class="anchor" aria-label="anchor" href="#arg-next-cursor-path"></a></dt>
 <dd><p>(<code>character</code>) A vector indicating the path to the
-<code>next_cursor</code> element in the body of the response.</p></dd>
+<code>next_cursor</code> element in the body of the response. For example, for the
+<a href="https://api.slack.com/apis/pagination" class="external-link">Slack API</a>, this value is
+<code>c("response_metadata", "next_cursor")</code>, while for the <a href="https://api.crossref.org/swagger-ui/index.html" class="external-link">Crossref Unified Resource API</a>, this value
+is <code>"next-cursor"</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
