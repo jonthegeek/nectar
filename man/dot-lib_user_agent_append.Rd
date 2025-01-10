@@ -24,11 +24,11 @@ add to or remove from the user agent string.}
 
 \item{url}{(\verb{length-1 character}) An optional url associated with \code{name}.}
 
-\item{call}{(\code{environment}) The environment from which a function was
-called, e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be
-mentioned in error messages as the source of the error. This argument is
-particularly useful for functions that are intended to be called as
-utilities inside other functions.}
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 A modified user agent string for the library.

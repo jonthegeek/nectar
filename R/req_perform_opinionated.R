@@ -20,7 +20,7 @@
 #'   [httr2::req_retry()].
 #'
 #' @return A list of [httr2::response()] objects, one for each request
-#'   performed.
+#'   performed. The list has additional class `nectar_responses`.
 #' @export
 req_perform_opinionated <- function(req,
                                     ...,
@@ -30,13 +30,16 @@ req_perform_opinionated <- function(req,
   rlang::check_dots_empty()
   req <- .req_apply_retry_default(req, max_tries_per_req)
   if (is.null(next_req)) {
-    return(list(req_perform(req)))
+    resps <- list(req_perform(req))
+  } else {
+    resps <- req_perform_iterative(
+      req,
+      next_req = next_req,
+      max_reqs = max_reqs
+    )
   }
-  req_perform_iterative(
-    req,
-    next_req = next_req,
-    max_reqs = max_reqs
-  )
+  class(resps) <- c("nectar_responses", class(resps))
+  return(resps)
 }
 
 .req_apply_retry_default <- function(req, max_tries_per_req) {

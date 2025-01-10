@@ -14,11 +14,11 @@
 agent, such as the value of \code{req$options$useragent} in a \code{\link[httr2:request]{httr2::request()}}
 object.}
 
-\item{call}{(\code{environment}) The environment from which a function was
-called, e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be
-mentioned in error messages as the source of the error. This argument is
-particularly useful for functions that are intended to be called as
-utilities inside other functions.}
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 A string to use as a user agent, with the nectar user agent

@@ -29,11 +29,15 @@ from which you will need to choose one.}
 any component of the body is a path, pass it through \code{\link[fs:path]{fs::path()}} or
 otherwise give it the class "fs_path" to indicate that it is a path.}
 
-\item{call}{(\code{environment}) The environment from which a function was
-called, e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be
-mentioned in error messages as the source of the error. This argument is
-particularly useful for functions that are intended to be called as
-utilities inside other functions.}
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
+
+\item{check_type}{(\verb{length-1 logical}) Whether to check that the response has
+the expected content type. Set to \code{FALSE} if the response is not
+specifically tagged as the proper type.}
 
 \item{existing_user_agent}{(\verb{length-1 character}, optional) An existing user
 agent, such as the value of \code{req$options$useragent} in a \code{\link[httr2:request]{httr2::request()}}
@@ -68,9 +72,16 @@ elements containing multiple values are handled.}
 
 \item{req}{(\code{httr2_request}) A \code{\link[httr2:request]{httr2::request()}} object.}
 
-\item{resp}{(\code{httr2_response} or \code{list}) A single \code{\link[httr2:response]{httr2::response()}} object
-(as returned by \code{\link[httr2:req_perform]{httr2::req_perform()}}) or a list of such objects (as
-returned by \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}).}
+\item{resp}{(\code{httr2_response}) A single \code{\link[httr2:response]{httr2::response()}} object (as
+returned by \code{\link[httr2:req_perform]{httr2::req_perform()}}).}
+
+\item{resps}{(\code{httr2_response}, \code{nectar_responses}, or \code{list}) A single
+\code{\link[httr2:response]{httr2::response()}} object (as returned by \code{\link[httr2:req_perform]{httr2::req_perform()}}) or a
+list of such objects (as returned by \code{\link[=req_perform_opinionated]{req_perform_opinionated()}} or
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}).}
+
+\item{resp_body_fn}{A function to extract the body of the response. Default:
+\code{\link[=resp_body_auto]{resp_body_auto()}}.}
 
 \item{response_parser}{(\code{function}) A function to parse the server response
 (\code{resp}). Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are

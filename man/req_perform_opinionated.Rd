@@ -34,7 +34,7 @@ individual request. Passed to the \code{max_tries} argument of
 }
 \value{
 A list of \code{\link[httr2:response]{httr2::response()}} objects, one for each request
-performed.
+performed. The list has additional class \code{nectar_responses}.
 }
 \description{
 This function ensures that a request has \code{\link[httr2:req_retry]{httr2::req_retry()}} applied, and
