@@ -5,8 +5,7 @@
 #' API responses generally follow a structured format. Use this function to
 #' extract the relevant portion of a response, and wrangle it into a desired
 #' format. This function is most useful when the response was fetched with a
-#' request that includes a tidying policy (more information about this coming
-#' soon).
+#' request that includes a tidying policy defined via [req_tidy_policy()].
 #'
 #' @inheritParams .shared-params
 #'
@@ -34,9 +33,9 @@ resp_tidy.httr2_response <- function(resps) {
   if (length(req$policies$resp_tidy)) {
     return(
       rlang::exec(
-        req$policies$resp_tidy$fn,
+        req$policies$resp_tidy$tidy_fn,
         resps,
-        !!!req$policies$resp_tidy$args
+        !!!req$policies$resp_tidy$tidy_args
       )
     )
   }

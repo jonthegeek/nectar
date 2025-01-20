@@ -21,8 +21,7 @@ default, the response is processed with \code{\link[=resp_body_auto]{resp_body_a
 API responses generally follow a structured format. Use this function to
 extract the relevant portion of a response, and wrangle it into a desired
 format. This function is most useful when the response was fetched with a
-request that includes a tidying policy (more information about this coming
-soon).
+request that includes a tidying policy defined via \code{\link[=req_tidy_policy]{req_tidy_policy()}}.
 }
 \seealso{
 \code{\link[=resp_tidy_json]{resp_tidy_json()}} for an opinionated response parser for JSON

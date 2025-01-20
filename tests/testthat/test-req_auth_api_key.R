@@ -36,6 +36,13 @@ test_that("req_auth_api_key works for query", {
     api_key = "my_key",
     location = "query"
   )
+  # As of 2025-01-20, httr2 on macos did not insert the "/", but all other OSs
+  # did. Normalizing manually here.
+  test_result$url <- stringr::str_replace(
+    test_result$url,
+    stringr::fixed("/?parm"),
+    stringr::fixed("?parm")
+  )
   expect_identical(
     test_result$url,
     "https://example.com?parm=my_key"

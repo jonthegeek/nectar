@@ -70,8 +70,8 @@ test_that("resp_tidy_json works with resp_tidy", {
   mock_response$request <- list(
     policies = list(
       resp_tidy = list(
-        fn = resp_tidy_json,
-        args = list(
+        tidy_fn = resp_tidy_json,
+        tidy_args = list(
           spec = tibblify::tspec_df(
             lc = tibblify::tib_chr("a"),
             uc = tibblify::tib_chr("b"),
