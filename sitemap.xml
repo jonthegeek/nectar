@@ -21,12 +21,14 @@
 <url><loc>https://nectar.api2r.org/reference/dot-nectar_user_agent_append.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-next_cursor_finder.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-pkg_user_agent_append.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/dot-req_apply_retry_default.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_auth_api_key_cookie.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_auth_api_key_header.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_auth_api_key_query.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_body_auto.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_method_apply.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_path_append.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/dot-req_policy.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-req_query_flatten.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-resp_body_auto_other.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-shared-params.html</loc></url>
@@ -42,6 +44,7 @@
 <url><loc>https://nectar.api2r.org/reference/req_perform_opinionated.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_pkg_user_agent.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_prepare.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/req_tidy_policy.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/resp_body_auto.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/resp_body_csv.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/resp_body_separate.html</loc></url>
