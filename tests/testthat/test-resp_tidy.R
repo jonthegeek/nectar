@@ -37,7 +37,7 @@ test_that("resp_tidy parses httr2_response objects with resp_tidy policy", {
   mock_response$request <- list(
     policies = list(
       resp_tidy = list(
-        fn = function(resp) {
+        tidy_fn = function(resp) {
           unlist(httr2::resp_body_json(resp))
         }
       )
@@ -47,15 +47,15 @@ test_that("resp_tidy parses httr2_response objects with resp_tidy policy", {
   expect_identical(test_result, 1:3)
 })
 
-test_that("resp_tidy uses policies$resp_tidy$args", {
+test_that("resp_tidy uses policies$resp_tidy$tidy_args", {
   mock_response <- httr2::response_json(body = 1:3)
   mock_response$request <- list(
     policies = list(
       resp_tidy = list(
-        fn = function(resp, additional) {
+        tidy_fn = function(resp, additional) {
           c(unlist(httr2::resp_body_json(resp)), additional)
         },
-        args = list(additional = 4:6)
+        tidy_args = list(additional = 4:6)
       )
     )
   )
@@ -67,7 +67,7 @@ test_that("resp_tidy parses and combines nectar_responses objects", {
   request_obj <- list(
     policies = list(
       resp_tidy = list(
-        fn = function(resp) {
+        tidy_fn = function(resp) {
           unlist(httr2::resp_body_json(resp))
         }
       )
@@ -89,7 +89,7 @@ test_that("resp_tidy parses and combines lists of httr2_response objects", {
   request_obj <- list(
     policies = list(
       resp_tidy = list(
-        fn = function(resp) {
+        tidy_fn = function(resp) {
           unlist(httr2::resp_body_json(resp))
         }
       )

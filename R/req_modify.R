@@ -39,7 +39,7 @@ req_modify <- function(req,
 
 .req_path_append_impl <- function(req, path) {
   path <- rlang::inject(glue::glue(!!!path, .sep = "/"))
-  path <- url_normalize(path)
+  path <- .path_merge(path)
   req <- httr2::req_url_path_append(req, path)
 }
 

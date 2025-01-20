@@ -4,7 +4,7 @@
 \alias{do_if_fn_defined}
 \title{Use a provided function}
 \usage{
-do_if_fn_defined(x, fn = NULL, ...)
+do_if_fn_defined(x, fn = NULL, ..., call = rlang::caller_env())
 }
 \arguments{
 \item{x}{An object to potentially modify, such as a \code{\link[httr2:request]{httr2::request()}}
@@ -14,6 +14,12 @@ object.}
 unchanged.}
 
 \item{...}{Additional arguments to pass to \code{fn}.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 The object, potentially modified.

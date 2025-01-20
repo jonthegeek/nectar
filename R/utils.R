@@ -99,6 +99,7 @@ url_normalize <- function(url) {
 #' one endpoint might use a special auth function that isn't used by other
 #' endpoints. This function exists to make coding such situations easier.
 #'
+#' @inheritParams .shared-params
 #' @param x An object to potentially modify, such as a [httr2::request()]
 #'   object.
 #' @param fn A function to apply to `x`. If `fn` is `NULL`, `x` is returned
@@ -124,8 +125,9 @@ url_normalize <- function(url) {
 #'   "secure_endpoint", httr2::req_auth_bearer_token, "secret-token"
 #' )
 #' secure_req$headers$Authorization
-do_if_fn_defined <- function(x, fn = NULL, ...) {
-  if (is.function(fn)) {
+do_if_fn_defined <- function(x, fn = NULL, ..., call = rlang::caller_env()) {
+  if (length(fn)) {
+    fn <- rlang::as_function(fn, call = call)
     # Higher-level calls can include !!!'ed arguments.
     dots <- rlang::list2(...)
     x <- rlang::inject(fn(x, !!!dots))
@@ -135,21 +137,16 @@ do_if_fn_defined <- function(x, fn = NULL, ...) {
 
 #' Use a function if args are provided
 #'
-#' @param x An object to potentially modify, such as a [httr2::request()]
-#'   object.
-#' @param fn A function to apply to `x`. If `fn` is `NULL`, `x` is returned
-#'   unchanged.
-#' @param ... Additional arguments to pass to `fn`.
+#' @inheritParams .shared-params
+#' @inheritParams do_if_fn_defined
 #'
-#' @return The object, potentially modified.
+#' @inherit do_if_fn_defined return
 #' @keywords internal
-.do_if_args_defined <- function(x, fn = NULL, ...) {
-  if (is.function(fn)) {
-    dots <- rlang::list2(...)
-    dots <- purrr::discard(dots, is.null)
-    if (length(dots)) {
-      x <- rlang::inject(fn(x, !!!dots))
-    }
+.do_if_args_defined <- function(x, fn = NULL, ..., call = rlang::caller_env()) {
+  dots <- rlang::list2(...)
+  dots <- purrr::discard(dots, is.null)
+  if (length(dots)) {
+    return(do_if_fn_defined(x, fn, !!!dots, call = call))
   }
   return(x)
 }

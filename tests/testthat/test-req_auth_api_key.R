@@ -38,7 +38,7 @@ test_that("req_auth_api_key works for query", {
   )
   expect_identical(
     test_result$url,
-    "https://example.com?parm=my_key"
+    "https://example.com/?parm=my_key"
   )
 })
 

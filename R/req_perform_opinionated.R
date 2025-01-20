@@ -42,6 +42,11 @@ req_perform_opinionated <- function(req,
   return(resps)
 }
 
+#' Add a retry policy if none is defined
+#'
+#' @inheritParams req_perform_opinionated
+#' @inherit req_perform_opinionated return
+#' @keywords internal
 .req_apply_retry_default <- function(req, max_tries_per_req) {
   if (
     any(c("retry_max_wait", "retry_max_tries") %in% names(req$policies)) ||
