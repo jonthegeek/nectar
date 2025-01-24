@@ -9,8 +9,8 @@
 \arguments{
 \item{req}{The first \link[httr2]{request} to perform.}
 
-\item{max_tries_per_req}{The maximum number of times to attempt each
-individual request. Passed to the \code{max_tries} argument of
+\item{max_tries_per_req}{(\verb{length-1 integer}) The maximum number of times to
+attempt each individual request. Passed to the \code{max_tries} argument of
 \code{\link[httr2:req_retry]{httr2::req_retry()}}.}
 }
 \value{

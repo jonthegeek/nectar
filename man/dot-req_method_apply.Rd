@@ -4,13 +4,19 @@
 \alias{.req_method_apply}
 \title{Add a method if it is supplied}
 \usage{
-.req_method_apply(req, method)
+.req_method_apply(req, method, call = rlang::caller_env())
 }
 \arguments{
 \item{req}{(\code{httr2_request}) A \code{\link[httr2:request]{httr2::request()}} object.}
 
 \item{method}{(\verb{length-1 character}, optional) If the method is something
 other than \code{GET} or \code{POST}, supply it. Case is ignored.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 A \code{\link[httr2:request]{httr2::request()}} object.

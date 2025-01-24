@@ -31,7 +31,7 @@ call_api <- function(base_url,
                      auth_args = list(),
                      response_parser = resp_tidy,
                      response_parser_args = list(),
-                     next_req = NULL,
+                     next_req_fn = NULL,
                      max_reqs = Inf,
                      max_tries_per_req = 3,
                      additional_user_agent = NULL) {
@@ -49,7 +49,7 @@ call_api <- function(base_url,
   )
   resps <- req_perform_opinionated(
     req,
-    next_req = next_req,
+    next_req_fn = next_req_fn,
     max_reqs = max_reqs,
     max_tries_per_req = max_tries_per_req
   )

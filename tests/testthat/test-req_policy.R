@@ -1,5 +1,5 @@
 test_that(".req_policy returns reqs unchanged when no policies added", {
-  req <- httr2::request("https://example.com")
+  req <- .as_nectar_request(httr2::request("https://example.com"))
   expect_identical(
     .req_policy(req),
     req

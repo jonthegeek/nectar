@@ -4,7 +4,7 @@
 \alias{.req_body_auto}
 \title{Send data in request body}
 \usage{
-.req_body_auto(req, body, mime_type = NULL)
+.req_body_auto(req, body, mime_type = NULL, call = rlang::caller_env())
 }
 \arguments{
 \item{req}{(\code{httr2_request}) A \code{\link[httr2:request]{httr2::request()}} object.}
@@ -15,6 +15,12 @@ otherwise give it the class "fs_path" to indicate that it is a path.}
 
 \item{mime_type}{(\verb{length-1 character}) The mime type of any files present in
 the body. Some APIs allow you to leave this as NULL for them to guess.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 A modified HTTP \link[httr2]{request}.

@@ -7,6 +7,7 @@
 #' @inheritParams rlang::args_dots_empty
 #' @inheritParams .shared-params
 #' @inherit .shared-request return
+#' @family opinionated request functions
 #' @export
 #'
 #' @examples
@@ -16,10 +17,11 @@
 #'   additional_user_agent = "my_api_client (https://my.api.client)"
 #' )
 req_init <- function(base_url,
-                      ...,
-                      additional_user_agent = NULL) {
+                     ...,
+                     additional_user_agent = NULL,
+                     call = rlang::caller_env()) {
   req <- httr2::request(base_url)
   req <- httr2::req_user_agent(req, additional_user_agent)
-  req <- req_pkg_user_agent(req)
-  return(req)
+  req <- req_pkg_user_agent(req, call = call)
+  return(.as_nectar_request(req))
 }

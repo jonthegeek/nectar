@@ -125,3 +125,44 @@ test_that("req_prepare() applies methods", {
   )
   expect_null(test_result$method)
 })
+
+test_that("req_prepare() applies pagination", {
+  test_result <- req_prepare(
+    base_url = "https://example.com",
+    pagination_fn = httr2::iterate_with_offset("page")
+  )
+  expect_identical(
+    test_result$policies$pagination$pagination_fn,
+    httr2::iterate_with_offset("page")
+  )
+})
+
+test_that("req_prepare() applies tidying", {
+  test_result <- req_prepare(
+    base_url = "https://example.com",
+    tidy_fn = httr2::resp_body_json,
+    tidy_args = list(simplifyVector = TRUE)
+  )
+  test_result$policies$resp_tidy$tidy_fn
+  expect_identical(
+    test_result$policies$resp_tidy,
+    list(
+      tidy_fn = httr2::resp_body_json,
+      tidy_args = list(simplifyVector = TRUE)
+    )
+  )
+})
+
+test_that(".as_nectar_request() fails gracefully for non-reqs", {
+  test_obj <- 1
+  expect_error(
+    .as_nectar_request(test_obj),
+    class = "nectar_error-unsupported_request_class"
+  )
+  expect_snapshot(
+    {
+      .as_nectar_request(test_obj)
+    },
+    error = TRUE
+  )
+})

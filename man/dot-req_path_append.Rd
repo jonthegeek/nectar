@@ -4,7 +4,7 @@
 \alias{.req_path_append}
 \title{Process a path with glue syntax and append it}
 \usage{
-.req_path_append(req, path)
+.req_path_append(req, path, call = rlang::caller_env())
 }
 \arguments{
 \item{req}{(\code{httr2_request}) A \code{\link[httr2:request]{httr2::request()}} object.}
@@ -13,6 +13,12 @@
 a list or character vector with the path as one or more unnamed arguments
 (which will be concatenated with "/") plus named arguments to
 \code{\link[glue:glue]{glue::glue()}} into the path.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 A \code{\link[httr2:request]{httr2::request()}} object.

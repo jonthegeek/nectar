@@ -10,8 +10,8 @@ resp_body_separate(resp, resp_body_fn = resp_body_auto)
 \item{resp}{(\code{httr2_response}) A single \code{\link[httr2:response]{httr2::response()}} object (as
 returned by \code{\link[httr2:req_perform]{httr2::req_perform()}}).}
 
-\item{resp_body_fn}{A function to extract the body of the response. Default:
-\code{\link[=resp_body_auto]{resp_body_auto()}}.}
+\item{resp_body_fn}{(\code{function}) A function to extract the body of the
+response. Default: \code{\link[=resp_body_auto]{resp_body_auto()}}.}
 }
 \value{
 The parsed response body wrapped in a \code{\link[=list]{list()}}. This is useful for
