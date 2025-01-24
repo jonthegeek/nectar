@@ -3,7 +3,7 @@ test_that("req_prepare() applies user agent", {
     base_url = "https://example.com",
     additional_user_agent = "foo"
   )
-  this_version <- desc::desc_get_version()
+  this_version <- utils::packageVersion("nectar")
   expect_identical(
     test_result$options$useragent,
     unclass(glue::glue(
