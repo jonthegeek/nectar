@@ -10,11 +10,13 @@
 #'   (`resp`) to generate the next request in a call to
 #'   [httr2::req_perform_iterative()]. This function can usually be generated
 #'   using one of the iteration helpers described in
-#'   [httr2::iterate_with_offset()].
+#'   [httr2::iterate_with_offset()]. By default, [choose_pagination_fn()] is
+#'   used to check for a pagination policy (see [req_pagination_policy()]),
+#'   and returns `NULL` if no such policy is defined.
 #' @param max_reqs The maximum number of separate requests to perform. Passed to
 #'   the max_reqs argument of [httr2::req_perform_iterative()] when `next_req`
-#'   is supplied. The default `2` should likely be changed to `Inf` after you
-#'   validate the function.
+#'   is supplied. You will mostly likely want to change the default value (`2`)
+#'   to `Inf` after you validate that the request works.
 #' @param max_tries_per_req The maximum number of times to attempt each
 #'   individual request. Passed to the `max_tries` argument of
 #'   [httr2::req_retry()].
@@ -24,7 +26,7 @@
 #' @export
 req_perform_opinionated <- function(req,
                                     ...,
-                                    next_req = NULL,
+                                    next_req = choose_pagination_fn(req),
                                     max_reqs = 2,
                                     max_tries_per_req = 3) {
   rlang::check_dots_empty()

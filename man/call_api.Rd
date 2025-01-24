@@ -67,12 +67,14 @@ common. Set this to \code{NULL} to return the raw response from
 (\code{resp}) to generate the next request in a call to
 \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
 using one of the iteration helpers described in
-\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}.}
+\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}. By default, \code{\link[=choose_pagination_fn]{choose_pagination_fn()}} is
+used to check for a pagination policy (see \code{\link[=req_pagination_policy]{req_pagination_policy()}}),
+and returns \code{NULL} if no such policy is defined.}
 
 \item{max_reqs}{The maximum number of separate requests to perform. Passed to
 the max_reqs argument of \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}} when \code{next_req}
-is supplied. The default \code{2} should likely be changed to \code{Inf} after you
-validate the function.}
+is supplied. You will mostly likely want to change the default value (\code{2})
+to \code{Inf} after you validate that the request works.}
 
 \item{max_tries_per_req}{The maximum number of times to attempt each
 individual request. Passed to the \code{max_tries} argument of
