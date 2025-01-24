@@ -9,6 +9,7 @@
 <url><loc>https://nectar.api2r.org/index.html</loc></url>
 <url><loc>https://nectar.api2r.org/principles.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/call_api.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/choose_pagination_fn.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/compact_nested_list.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/do_if_fn_defined.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/dot-compact_nested_list_impl.html</loc></url>
@@ -41,6 +42,7 @@
 <url><loc>https://nectar.api2r.org/reference/req_auth_api_key.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_init.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_modify.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/req_pagination_policy.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_perform_opinionated.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_pkg_user_agent.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/req_prepare.html</loc></url>

@@ -17,7 +17,7 @@ default, httr2::resp_body_json()."><meta property="og:image" content="https://ne
 
     <a class="navbar-brand me-2" href="../index.html">nectar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,14 +142,16 @@ common. Set this to <code>NULL</code> to return the raw response from
 (<code>resp</code>) to generate the next request in a call to
 <code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code>. This function can usually be generated
 using one of the iteration helpers described in
-<code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_offset()</a></code>.</p></dd>
+<code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_offset()</a></code>. By default, <code><a href="choose_pagination_fn.html">choose_pagination_fn()</a></code> is
+used to check for a pagination policy (see <code><a href="req_pagination_policy.html">req_pagination_policy()</a></code>),
+and returns <code>NULL</code> if no such policy is defined.</p></dd>
 
 
 <dt id="arg-max-reqs">max_reqs<a class="anchor" aria-label="anchor" href="#arg-max-reqs"></a></dt>
 <dd><p>The maximum number of separate requests to perform. Passed to
 the max_reqs argument of <code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code> when <code>next_req</code>
-is supplied. The default <code>2</code> should likely be changed to <code>Inf</code> after you
-validate the function.</p></dd>
+is supplied. You will mostly likely want to change the default value (<code>2</code>)
+to <code>Inf</code> after you validate that the request works.</p></dd>
 
 
 <dt id="arg-max-tries-per-req">max_tries_per_req<a class="anchor" aria-label="anchor" href="#arg-max-tries-per-req"></a></dt>
