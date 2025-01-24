@@ -2,23 +2,25 @@
 #'
 #' This function ensures that a request has [httr2::req_retry()] applied, and
 #' then performs the request, using either [httr2::req_perform_iterative()] (if
-#' a `next_req` function is supplied) or [httr2::req_perform()] (if not).
+#' a `next_req_fn` function is supplied) or [httr2::req_perform()] (if not).
 #'
 #' @inheritParams httr2::req_perform_iterative
 #' @inheritParams rlang::args_dots_empty
-#' @param next_req An optional function that takes the previous response
-#'   (`resp`) to generate the next request in a call to
+#' @param next_req_fn (`function`) An optional function that takes the previous
+#'   response (`resp`) and request (`req`), and returns a new request. This
+#'   function is passed as `next_req` in a call to
 #'   [httr2::req_perform_iterative()]. This function can usually be generated
 #'   using one of the iteration helpers described in
 #'   [httr2::iterate_with_offset()]. By default, [choose_pagination_fn()] is
-#'   used to check for a pagination policy (see [req_pagination_policy()]),
-#'   and returns `NULL` if no such policy is defined.
-#' @param max_reqs The maximum number of separate requests to perform. Passed to
-#'   the max_reqs argument of [httr2::req_perform_iterative()] when `next_req`
-#'   is supplied. You will mostly likely want to change the default value (`2`)
-#'   to `Inf` after you validate that the request works.
-#' @param max_tries_per_req The maximum number of times to attempt each
-#'   individual request. Passed to the `max_tries` argument of
+#'   used to check for a pagination policy (see [req_pagination_policy()]), and
+#'   returns `NULL` if no such policy is defined.
+#' @param max_reqs (`length-1 integer`) The maximum number of separate requests
+#'   to perform. Passed to the max_reqs argument of
+#'   [httr2::req_perform_iterative()] when `next_req` is supplied. You will
+#'   mostly likely want to change the default value (`2`) to `Inf` after you
+#'   validate that the request works.
+#' @param max_tries_per_req (`length-1 integer`) The maximum number of times to
+#'   attempt each individual request. Passed to the `max_tries` argument of
 #'   [httr2::req_retry()].
 #'
 #' @return A list of [httr2::response()] objects, one for each request
@@ -26,17 +28,17 @@
 #' @export
 req_perform_opinionated <- function(req,
                                     ...,
-                                    next_req = choose_pagination_fn(req),
+                                    next_req_fn = choose_pagination_fn(req),
                                     max_reqs = 2,
                                     max_tries_per_req = 3) {
   rlang::check_dots_empty()
   req <- .req_apply_retry_default(req, max_tries_per_req)
-  if (is.null(next_req)) {
+  if (is.null(next_req_fn)) {
     resps <- list(req_perform(req))
   } else {
     resps <- req_perform_iterative(
       req,
-      next_req = next_req,
+      next_req = next_req_fn,
       max_reqs = max_reqs
     )
   }

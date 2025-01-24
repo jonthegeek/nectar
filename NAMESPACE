@@ -2,6 +2,9 @@
 
 S3method(.add_body,json)
 S3method(.add_body,multipart)
+S3method(.as_nectar_request,default)
+S3method(.as_nectar_request,httr2_request)
+S3method(.as_nectar_request,nectar_request)
 S3method(resp_parse,default)
 S3method(resp_parse,httr2_response)
 S3method(resp_parse,list)

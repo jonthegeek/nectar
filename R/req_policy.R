@@ -12,7 +12,7 @@
 .req_policy <- function(req, ..., call = rlang::caller_env()) {
   dots <- rlang::list2(...)
   if (!length(dots)) {
-    return(req)
+    return(.as_nectar_request(req))
   }
   if (!rlang::is_named(dots)) {
     .nectar_abort(
@@ -26,5 +26,5 @@
   if (!length(req$policies)) {
     names(req$policies) <- NULL
   }
-  return(req)
+  return(.as_nectar_request(req))
 }

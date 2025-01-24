@@ -11,7 +11,8 @@ req_modify(
   query = NULL,
   body = NULL,
   mime_type = NULL,
-  method = NULL
+  method = NULL,
+  call = rlang::caller_env()
 )
 }
 \arguments{
@@ -38,9 +39,15 @@ the body. Some APIs allow you to leave this as NULL for them to guess.}
 
 \item{method}{(\verb{length-1 character}, optional) If the method is something
 other than \code{GET} or \code{POST}, supply it. Case is ignored.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 Modify the basic request for an API by adding a path and any other
@@ -51,3 +58,11 @@ req_base <- req_init("https://example.com")
 req_modify(req_base, path = c("specific/{path}", path = "endpoint"))
 req_modify(req_base, query = c("param1" = "value1", "param2" = "value2"))
 }
+\seealso{
+Other opinionated request functions: 
+\code{\link{req_init}()},
+\code{\link{req_pagination_policy}()},
+\code{\link{req_prepare}()},
+\code{\link{req_tidy_policy}()}
+}
+\concept{opinionated request functions}

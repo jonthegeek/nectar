@@ -8,6 +8,7 @@
 #'
 #' @inherit .shared-request return
 #' @export
+#' @family opinionated request functions
 #'
 #' @examples
 #' req_base <- req_init("https://example.com")
@@ -19,13 +20,14 @@ req_modify <- function(req,
                        query = NULL,
                        body = NULL,
                        mime_type = NULL,
-                       method = NULL) {
+                       method = NULL,
+                       call = rlang::caller_env()) {
   rlang::check_dots_empty()
-  req <- .req_path_append(req, path)
+  req <- .req_path_append(req, path, call = call)
   req <- .req_query_flatten(req, query)
-  req <- .req_body_auto(req, body, mime_type)
-  req <- .req_method_apply(req, method)
-  return(req)
+  req <- .req_body_auto(req, body, mime_type, call = call)
+  req <- .req_method_apply(req, method, call = call)
+  return(.as_nectar_request(req))
 }
 
 #' Process a path with glue syntax and append it
@@ -33,8 +35,8 @@ req_modify <- function(req,
 #' @inheritParams .shared-params
 #' @inherit .shared-request return
 #' @keywords internal
-.req_path_append <- function(req, path) {
-  .do_if_args_defined(req, .req_path_append_impl, path = path)
+.req_path_append <- function(req, path, call = rlang::caller_env()) {
+  .do_if_args_defined(req, .req_path_append_impl, path = path, call = call)
 }
 
 .req_path_append_impl <- function(req, path) {
@@ -62,8 +64,8 @@ req_modify <- function(req,
 #' @inheritParams .shared-params
 #' @inherit .shared-request return
 #' @keywords internal
-.req_method_apply <- function(req, method) {
-  .do_if_args_defined(req, httr2::req_method, method = method)
+.req_method_apply <- function(req, method, call = rlang::caller_env()) {
+  .do_if_args_defined(req, httr2::req_method, method = method, call = call)
 }
 
 .prepare_body <- function(body,
@@ -106,9 +108,10 @@ req_modify <- function(req,
 #' @keywords internal
 .req_body_auto <- function(req,
                            body,
-                           mime_type = NULL) {
+                           mime_type = NULL,
+                           call = rlang::caller_env()) {
   body <- .prepare_body(body, mime_type)
-  .do_if_args_defined(req, .add_body, body = body)
+  .do_if_args_defined(req, .add_body, body = body, call = call)
 }
 
 .add_body <- function(req, body) {

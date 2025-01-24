@@ -14,10 +14,11 @@ req_tidy_policy(
 \arguments{
 \item{req}{(\code{httr2_request}) A \code{\link[httr2:request]{httr2::request()}} object.}
 
-\item{tidy_fn}{A function that will be invoked by \code{\link[=resp_tidy]{resp_tidy()}} to tidy the
-response.}
+\item{tidy_fn}{(\code{function}) A function that will be invoked by \code{\link[=resp_tidy]{resp_tidy()}}
+to tidy the response.}
 
-\item{tidy_args}{A list of additional arguments to pass to \code{tidy_fn}.}
+\item{tidy_args}{(\code{list}) A list of additional arguments to pass to
+\code{tidy_fn}.}
 
 \item{call}{(\code{environment}) The environment from which a function was called,
 e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
@@ -26,7 +27,7 @@ useful for functions that are intended to be called as utilities inside
 other functions.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 API responses generally follow a structured format. Use this function to
@@ -37,3 +38,11 @@ portion of a response and wrangle it into a desired format.
 req <- httr2::request("https://example.com")
 req_tidy_policy(req, httr2::resp_body_json, list(simplifyVector = TRUE))
 }
+\seealso{
+Other opinionated request functions: 
+\code{\link{req_init}()},
+\code{\link{req_modify}()},
+\code{\link{req_pagination_policy}()},
+\code{\link{req_prepare}()}
+}
+\concept{opinionated request functions}

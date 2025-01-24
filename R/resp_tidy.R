@@ -1,5 +1,3 @@
-# TODO: Connect this help to the req_ function that adds the tidying info.
-
 #' Extract and clean an API response
 #'
 #' API responses generally follow a structured format. Use this function to

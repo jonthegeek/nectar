@@ -16,7 +16,7 @@ test_that("req_perform_opinionated() applies iteration when appropriate", {
     )
   )
   expect_identical(
-    req_perform_opinionated(req, next_req = c),
+    req_perform_opinionated(req, next_req_fn = c),
     structure(
       "req_perform_iterative",
       class = c("nectar_responses", "character")

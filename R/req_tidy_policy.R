@@ -5,11 +5,8 @@
 #' portion of a response and wrangle it into a desired format.
 #'
 #' @inheritParams .shared-params
-#' @param tidy_fn A function that will be invoked by [resp_tidy()] to tidy the
-#'   response.
-#' @param tidy_args A list of additional arguments to pass to `tidy_fn`.
-#'
 #' @inherit .shared-request return
+#' @family opinionated request functions
 #' @export
 #'
 #' @examples

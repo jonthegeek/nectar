@@ -14,7 +14,11 @@ req_prepare(
   method = NULL,
   additional_user_agent = NULL,
   auth_fn = NULL,
-  auth_args = list()
+  auth_args = list(),
+  tidy_fn = NULL,
+  tidy_args = list(),
+  pagination_fn = NULL,
+  call = rlang::caller_env()
 )
 }
 \arguments{
@@ -54,9 +58,29 @@ default (\code{NULL}), no authentication is performed.}
 
 \item{auth_args}{(\code{list}) An optional list of arguments to the \code{auth_fn}
 function.}
+
+\item{tidy_fn}{(\code{function}) A function that will be invoked by \code{\link[=resp_tidy]{resp_tidy()}}
+to tidy the response.}
+
+\item{tidy_args}{(\code{list}) A list of additional arguments to pass to
+\code{tidy_fn}.}
+
+\item{pagination_fn}{(\code{function}) A function that takes the previous response
+(\code{resp}) to generate the next request in a call to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
+using one of the iteration helpers described in
+\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}. This function will be extracted from the
+request by \code{\link[=req_perform_opinionated]{req_perform_opinionated()}} and passed on as \code{next_req} to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 This function implements an opinionated framework for preparing an API
@@ -64,6 +88,10 @@ request. It is intended to be used inside an API client package. It serves as
 a wrapper around the \code{req_} family of functions, such as \code{\link[httr2:request]{httr2::request()}}.
 }
 \seealso{
-\code{\link[=req_init]{req_init()}}, \code{\link[=req_modify]{req_modify()}}, and \code{\link[=do_if_fn_defined]{do_if_fn_defined()}} for finer
-control of the process.
+Other opinionated request functions: 
+\code{\link{req_init}()},
+\code{\link{req_modify}()},
+\code{\link{req_pagination_policy}()},
+\code{\link{req_tidy_policy}()}
 }
+\concept{opinionated request functions}

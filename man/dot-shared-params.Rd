@@ -52,11 +52,13 @@ the body. Some APIs allow you to leave this as NULL for them to guess.}
 \item{name}{(\verb{length-1 character}) The name of a package or other thing to
 add to or remove from the user agent string.}
 
-\item{pkg_name}{(\verb{length-1 character}) The name of the calling package. This
-will usually be automatically determined based on the source of the call.}
-
-\item{pkg_url}{(\verb{length-1 character}) A url for information about the calling
-package (default \code{NULL}).}
+\item{pagination_fn}{(\code{function}) A function that takes the previous response
+(\code{resp}) to generate the next request in a call to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
+using one of the iteration helpers described in
+\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}. This function will be extracted from the
+request by \code{\link[=req_perform_opinionated]{req_perform_opinionated()}} and passed on as \code{next_req} to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}.}
 
 \item{parameter_name}{(\verb{length-1 character}) The name to use for the API key.}
 
@@ -64,6 +66,12 @@ package (default \code{NULL}).}
 a list or character vector with the path as one or more unnamed arguments
 (which will be concatenated with "/") plus named arguments to
 \code{\link[glue:glue]{glue::glue()}} into the path.}
+
+\item{pkg_name}{(\verb{length-1 character}) The name of the calling package. This
+will usually be automatically determined based on the source of the call.}
+
+\item{pkg_url}{(\verb{length-1 character}) A url for information about the calling
+package (default \code{NULL}).}
 
 \item{query}{(\code{character} or \code{list}) An optional list or character vector of
 parameters to pass in the query portion of the request. Can also include a
@@ -80,8 +88,8 @@ returned by \code{\link[httr2:req_perform]{httr2::req_perform()}}).}
 list of such objects (as returned by \code{\link[=req_perform_opinionated]{req_perform_opinionated()}} or
 \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}).}
 
-\item{resp_body_fn}{A function to extract the body of the response. Default:
-\code{\link[=resp_body_auto]{resp_body_auto()}}.}
+\item{resp_body_fn}{(\code{function}) A function to extract the body of the
+response. Default: \code{\link[=resp_body_auto]{resp_body_auto()}}.}
 
 \item{response_parser}{(\code{function}) A function to parse the server response
 (\code{resp}). Defaults to \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, since JSON responses are
@@ -90,6 +98,12 @@ common. Set this to \code{NULL} to return the raw response from
 
 \item{response_parser_args}{(\code{list}) An optional list of arguments to pass to
 the \code{response_parser} function (in addition to \code{resp}).}
+
+\item{tidy_fn}{(\code{function}) A function that will be invoked by \code{\link[=resp_tidy]{resp_tidy()}}
+to tidy the response.}
+
+\item{tidy_args}{(\code{list}) A list of additional arguments to pass to
+\code{tidy_fn}.}
 
 \item{url}{(\verb{length-1 character}) An optional url associated with \code{name}.}
 

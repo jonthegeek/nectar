@@ -16,7 +16,7 @@ call_api(
   auth_args = list(),
   response_parser = resp_tidy,
   response_parser_args = list(),
-  next_req = NULL,
+  next_req_fn = NULL,
   max_reqs = Inf,
   max_tries_per_req = 3,
   additional_user_agent = NULL
@@ -63,21 +63,23 @@ common. Set this to \code{NULL} to return the raw response from
 \item{response_parser_args}{(\code{list}) Additional arguments to pass to the
 \code{response_parser}.}
 
-\item{next_req}{An optional function that takes the previous response
-(\code{resp}) to generate the next request in a call to
+\item{next_req_fn}{(\code{function}) An optional function that takes the previous
+response (\code{resp}) and request (\code{req}), and returns a new request. This
+function is passed as \code{next_req} in a call to
 \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
 using one of the iteration helpers described in
 \code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}. By default, \code{\link[=choose_pagination_fn]{choose_pagination_fn()}} is
-used to check for a pagination policy (see \code{\link[=req_pagination_policy]{req_pagination_policy()}}),
-and returns \code{NULL} if no such policy is defined.}
+used to check for a pagination policy (see \code{\link[=req_pagination_policy]{req_pagination_policy()}}), and
+returns \code{NULL} if no such policy is defined.}
 
-\item{max_reqs}{The maximum number of separate requests to perform. Passed to
-the max_reqs argument of \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}} when \code{next_req}
-is supplied. You will mostly likely want to change the default value (\code{2})
-to \code{Inf} after you validate that the request works.}
+\item{max_reqs}{(\verb{length-1 integer}) The maximum number of separate requests
+to perform. Passed to the max_reqs argument of
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}} when \code{next_req} is supplied. You will
+mostly likely want to change the default value (\code{2}) to \code{Inf} after you
+validate that the request works.}
 
-\item{max_tries_per_req}{The maximum number of times to attempt each
-individual request. Passed to the \code{max_tries} argument of
+\item{max_tries_per_req}{(\verb{length-1 integer}) The maximum number of times to
+attempt each individual request. Passed to the \code{max_tries} argument of
 \code{\link[httr2:req_retry]{httr2::req_retry()}}.}
 
 \item{additional_user_agent}{(\verb{length-1 character}) A string to identify

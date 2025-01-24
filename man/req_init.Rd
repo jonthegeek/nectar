@@ -4,7 +4,12 @@
 \alias{req_init}
 \title{Setup a basic API request}
 \usage{
-req_init(base_url, ..., additional_user_agent = NULL)
+req_init(
+  base_url,
+  ...,
+  additional_user_agent = NULL,
+  call = rlang::caller_env()
+)
 }
 \arguments{
 \item{base_url}{(\verb{length-1 character}) The part of the url that is shared by
@@ -17,9 +22,15 @@ from which you will need to choose one.}
 where a request is coming from. We automatically include information about
 your package and nectar, but use this to provide additional details.
 Default \code{NULL}.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 For a given API, the \code{base_url} and user agent will generally be the same for
@@ -33,3 +44,11 @@ req_init(
   additional_user_agent = "my_api_client (https://my.api.client)"
 )
 }
+\seealso{
+Other opinionated request functions: 
+\code{\link{req_modify}()},
+\code{\link{req_pagination_policy}()},
+\code{\link{req_prepare}()},
+\code{\link{req_tidy_policy}()}
+}
+\concept{opinionated request functions}

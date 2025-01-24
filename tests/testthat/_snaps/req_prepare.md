@@ -23,3 +23,12 @@
       list()
       
 
+# .as_nectar_request() fails gracefully for non-reqs
+
+    Code
+      .as_nectar_request(test_obj)
+    Condition
+      Error:
+      ! `1` must be a <httr2_request>.
+      x `1` is a number.
+

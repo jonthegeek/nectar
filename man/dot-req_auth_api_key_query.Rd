@@ -16,7 +16,7 @@
 \item{api_key}{(\verb{length-1 character}) The API key to use.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 Authenticate with an API key in the query of the request

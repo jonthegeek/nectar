@@ -8,14 +8,8 @@
 #' pagination.
 #'
 #' @inheritParams .shared-params
-#' @param pagination_fn A function that takes the previous response (`resp`) to
-#'   generate the next request in a call to [httr2::req_perform_iterative()].
-#'   This function can usually be generated using one of the iteration helpers
-#'   described in [httr2::iterate_with_offset()]. This function will be
-#'   extracted from the request by [req_perform_opinionated()] and passed on as
-#'   `next_req` to [httr2::req_perform_iterative()].
-#'
 #' @inherit .shared-request return
+#' @family opinionated request functions
 #' @export
 #'
 #' @examples

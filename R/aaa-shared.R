@@ -37,15 +37,22 @@
 #'   the body. Some APIs allow you to leave this as NULL for them to guess.
 #' @param name (`length-1 character`) The name of a package or other thing to
 #'   add to or remove from the user agent string.
-#' @param pkg_name (`length-1 character`) The name of the calling package. This
-#'   will usually be automatically determined based on the source of the call.
-#' @param pkg_url (`length-1 character`) A url for information about the calling
-#'   package (default `NULL`).
+#' @param pagination_fn (`function`) A function that takes the previous response
+#'   (`resp`) to generate the next request in a call to
+#'   [httr2::req_perform_iterative()]. This function can usually be generated
+#'   using one of the iteration helpers described in
+#'   [httr2::iterate_with_offset()]. This function will be extracted from the
+#'   request by [req_perform_opinionated()] and passed on as `next_req` to
+#'   [httr2::req_perform_iterative()].
 #' @param parameter_name (`length-1 character`) The name to use for the API key.
 #' @param path (`character` or `list`) The route to an API endpoint. Optionally,
 #'   a list or character vector with the path as one or more unnamed arguments
 #'   (which will be concatenated with "/") plus named arguments to
 #'   [glue::glue()] into the path.
+#' @param pkg_name (`length-1 character`) The name of the calling package. This
+#'   will usually be automatically determined based on the source of the call.
+#' @param pkg_url (`length-1 character`) A url for information about the calling
+#'   package (default `NULL`).
 #' @param query (`character` or `list`) An optional list or character vector of
 #'   parameters to pass in the query portion of the request. Can also include a
 #'   `.multi` argument to pass to [httr2::req_url_query()] to control how
@@ -57,14 +64,18 @@
 #'   [httr2::response()] object (as returned by [httr2::req_perform()]) or a
 #'   list of such objects (as returned by [req_perform_opinionated()] or
 #'   [httr2::req_perform_iterative()]).
-#' @param resp_body_fn A function to extract the body of the response. Default:
-#'   [resp_body_auto()].
+#' @param resp_body_fn (`function`) A function to extract the body of the
+#'   response. Default: [resp_body_auto()].
 #' @param response_parser (`function`) A function to parse the server response
 #'   (`resp`). Defaults to [httr2::resp_body_json()], since JSON responses are
 #'   common. Set this to `NULL` to return the raw response from
 #'   [httr2::req_perform()].
 #' @param response_parser_args (`list`) An optional list of arguments to pass to
 #'   the `response_parser` function (in addition to `resp`).
+#' @param tidy_fn (`function`) A function that will be invoked by [resp_tidy()]
+#'   to tidy the response.
+#' @param tidy_args (`list`) A list of additional arguments to pass to
+#'   `tidy_fn`.
 #' @param url (`length-1 character`) An optional url associated with `name`.
 #' @param version (`length-1 character`) The version of `name`.
 #' @param x (multiple types) The object to update.
@@ -76,7 +87,7 @@ NULL
 
 #' Returns from request functions
 #'
-#' @return A [httr2::request()] object.
+#' @return A [httr2::request()] object with additional class `nectar_request`.
 #' @name .shared-request
 #' @keywords internal
 NULL

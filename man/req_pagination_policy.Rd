@@ -9,12 +9,13 @@ req_pagination_policy(req, pagination_fn, call = rlang::caller_env())
 \arguments{
 \item{req}{(\code{httr2_request}) A \code{\link[httr2:request]{httr2::request()}} object.}
 
-\item{pagination_fn}{A function that takes the previous response (\code{resp}) to
-generate the next request in a call to \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}.
-This function can usually be generated using one of the iteration helpers
-described in \code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}. This function will be
-extracted from the request by \code{\link[=req_perform_opinionated]{req_perform_opinionated()}} and passed on as
-\code{next_req} to \code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}.}
+\item{pagination_fn}{(\code{function}) A function that takes the previous response
+(\code{resp}) to generate the next request in a call to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}. This function can usually be generated
+using one of the iteration helpers described in
+\code{\link[httr2:iterate_with_offset]{httr2::iterate_with_offset()}}. This function will be extracted from the
+request by \code{\link[=req_perform_opinionated]{req_perform_opinionated()}} and passed on as \code{next_req} to
+\code{\link[httr2:req_perform_iterative]{httr2::req_perform_iterative()}}.}
 
 \item{call}{(\code{environment}) The environment from which a function was called,
 e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
@@ -23,7 +24,7 @@ useful for functions that are intended to be called as utilities inside
 other functions.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 APIs generally have a specified method for requesting multiple pages of
@@ -37,3 +38,11 @@ pagination.
 req <- httr2::request("https://example.com")
 req_pagination_policy(req, httr2::iterate_with_offset("page"))
 }
+\seealso{
+Other opinionated request functions: 
+\code{\link{req_init}()},
+\code{\link{req_modify}()},
+\code{\link{req_prepare}()},
+\code{\link{req_tidy_policy}()}
+}
+\concept{opinionated request functions}
