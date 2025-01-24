@@ -15,7 +15,7 @@
 no value is provided this function returns \code{req} unchanged.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 Authenticate with an API key in a cookie

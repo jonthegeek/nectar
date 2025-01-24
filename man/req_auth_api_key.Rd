@@ -21,7 +21,7 @@ use in the header or query.
 One of \code{"header"} (default), \code{"query"}, or \code{"cookie"}.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 Many APIs provide API keys that can be used to authenticate requests (or,

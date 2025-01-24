@@ -87,7 +87,7 @@ NULL
 
 #' Returns from request functions
 #'
-#' @return A [httr2::request()] object.
+#' @return A [httr2::request()] object with additional class `nectar_request`.
 #' @name .shared-request
 #' @keywords internal
 NULL

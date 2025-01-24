@@ -53,18 +53,18 @@ req_prepare <- function(base_url,
 }
 
 #' @export
-.as_nectar_request.nectar_request <- function(req) {
+.as_nectar_request.nectar_request <- function(req, ...) {
   return(req)
 }
 
 #' @export
-.as_nectar_request.httr2_request <- function(req) {
+.as_nectar_request.httr2_request <- function(req, ...) {
   class(req) <- c("nectar_request", class(req))
   return(req)
 }
 
 #' @export
-.as_nectar_request.default <- function(req, call = rlang::caller_env()) {
+.as_nectar_request.default <- function(req, ..., call = rlang::caller_env()) {
   .nectar_abort(
     c(
       "{.arg {req}} must be a {.cls httr2_request}.",

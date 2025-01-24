@@ -30,7 +30,7 @@ useful for functions that are intended to be called as utilities inside
 other functions.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 For a given API, the \code{base_url} and user agent will generally be the same for

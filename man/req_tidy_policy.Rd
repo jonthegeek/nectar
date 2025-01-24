@@ -27,7 +27,7 @@ useful for functions that are intended to be called as utilities inside
 other functions.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 API responses generally follow a structured format. Use this function to

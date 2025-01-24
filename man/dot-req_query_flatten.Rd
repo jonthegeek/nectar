@@ -15,7 +15,7 @@ parameters to pass in the query portion of the request. Can also include a
 elements containing multiple values are handled.}
 }
 \value{
-A \code{\link[httr2:request]{httr2::request()}} object.
+A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
 }
 \description{
 Add non-empty query elements to a request
