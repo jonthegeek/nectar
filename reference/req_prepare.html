@@ -53,7 +53,11 @@ a wrapper around the <code>req_</code> family of functions, such as <code><a hre
 <span>  method <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  additional_user_agent <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  auth_fn <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  auth_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  auth_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  tidy_fn <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tidy_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  pagination_fn <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -117,15 +121,46 @@ default (<code>NULL</code>), no authentication is performed.</p></dd>
 <dd><p>(<code>list</code>) An optional list of arguments to the <code>auth_fn</code>
 function.</p></dd>
 
+
+<dt id="arg-tidy-fn">tidy_fn<a class="anchor" aria-label="anchor" href="#arg-tidy-fn"></a></dt>
+<dd><p>(<code>function</code>) A function that will be invoked by <code><a href="resp_tidy.html">resp_tidy()</a></code>
+to tidy the response.</p></dd>
+
+
+<dt id="arg-tidy-args">tidy_args<a class="anchor" aria-label="anchor" href="#arg-tidy-args"></a></dt>
+<dd><p>(<code>list</code>) A list of additional arguments to pass to
+<code>tidy_fn</code>.</p></dd>
+
+
+<dt id="arg-pagination-fn">pagination_fn<a class="anchor" aria-label="anchor" href="#arg-pagination-fn"></a></dt>
+<dd><p>(<code>function</code>) A function that takes the previous response
+(<code>resp</code>) to generate the next request in a call to
+<code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code>. This function can usually be generated
+using one of the iteration helpers described in
+<code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_offset()</a></code>. This function will be extracted from the
+request by <code><a href="req_perform_opinionated.html">req_perform_opinionated()</a></code> and passed on as <code>next_req</code> to
+<code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code>.</p></dd>
+
+
+<dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
+<dd><p>(<code>environment</code>) The environment from which a function was called,
+e.g. <code><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">rlang::caller_env()</a></code> (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object.</p>
+    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object with additional class <code>nectar_request</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="req_init.html">req_init()</a></code>, <code><a href="req_modify.html">req_modify()</a></code>, and <code><a href="do_if_fn_defined.html">do_if_fn_defined()</a></code> for finer
-control of the process.</p></div>
+    <div class="dont-index"><p>Other opinionated request functions:
+<code><a href="req_init.html">req_init</a>()</code>,
+<code><a href="req_modify.html">req_modify</a>()</code>,
+<code><a href="req_pagination_policy.html">req_pagination_policy</a>()</code>,
+<code><a href="req_tidy_policy.html">req_tidy_policy</a>()</code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

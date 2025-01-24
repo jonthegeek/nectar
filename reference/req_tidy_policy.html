@@ -60,12 +60,13 @@ portion of a response and wrangle it into a desired format.</p>
 
 
 <dt id="arg-tidy-fn">tidy_fn<a class="anchor" aria-label="anchor" href="#arg-tidy-fn"></a></dt>
-<dd><p>A function that will be invoked by <code><a href="resp_tidy.html">resp_tidy()</a></code> to tidy the
-response.</p></dd>
+<dd><p>(<code>function</code>) A function that will be invoked by <code><a href="resp_tidy.html">resp_tidy()</a></code>
+to tidy the response.</p></dd>
 
 
 <dt id="arg-tidy-args">tidy_args<a class="anchor" aria-label="anchor" href="#arg-tidy-args"></a></dt>
-<dd><p>A list of additional arguments to pass to <code>tidy_fn</code>.</p></dd>
+<dd><p>(<code>list</code>) A list of additional arguments to pass to
+<code>tidy_fn</code>.</p></dd>
 
 
 <dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
@@ -78,14 +79,22 @@ other functions.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object.</p>
+    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object with additional class <code>nectar_request</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other opinionated request functions:
+<code><a href="req_init.html">req_init</a>()</code>,
+<code><a href="req_modify.html">req_modify</a>()</code>,
+<code><a href="req_pagination_policy.html">req_pagination_policy</a>()</code>,
+<code><a href="req_prepare.html">req_prepare</a>()</code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">req</span> <span class="op">&lt;-</span> <span class="fu">httr2</span><span class="fu">::</span><span class="fu"><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">request</a></span><span class="op">(</span><span class="st">"https://example.com"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">req_tidy_policy</span><span class="op">(</span><span class="va">req</span>, <span class="fu">httr2</span><span class="fu">::</span><span class="va"><a href="https://httr2.r-lib.org/reference/resp_body_raw.html" class="external-link">resp_body_json</a></span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>simplifyVector <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;nectar_request/httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span> https://example.com</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>

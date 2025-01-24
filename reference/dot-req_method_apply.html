@@ -40,7 +40,7 @@ default rules. This function deals with that.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.req_method_apply</span><span class="op">(</span><span class="va">req</span>, <span class="va">method</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.req_method_apply</span><span class="op">(</span><span class="va">req</span>, <span class="va">method</span>, call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -55,10 +55,18 @@ default rules. This function deals with that.</p>
 <dd><p>(<code>length-1 character</code>, optional) If the method is something
 other than <code>GET</code> or <code>POST</code>, supply it. Case is ignored.</p></dd>
 
+
+<dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
+<dd><p>(<code>environment</code>) The environment from which a function was called,
+e.g. <code><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">rlang::caller_env()</a></code> (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object.</p>
+    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object with additional class <code>nectar_request</code>.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

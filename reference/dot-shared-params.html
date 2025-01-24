@@ -114,14 +114,14 @@ the body. Some APIs allow you to leave this as NULL for them to guess.</p></dd>
 add to or remove from the user agent string.</p></dd>
 
 
-<dt id="arg-pkg-name">pkg_name<a class="anchor" aria-label="anchor" href="#arg-pkg-name"></a></dt>
-<dd><p>(<code>length-1 character</code>) The name of the calling package. This
-will usually be automatically determined based on the source of the call.</p></dd>
-
-
-<dt id="arg-pkg-url">pkg_url<a class="anchor" aria-label="anchor" href="#arg-pkg-url"></a></dt>
-<dd><p>(<code>length-1 character</code>) A url for information about the calling
-package (default <code>NULL</code>).</p></dd>
+<dt id="arg-pagination-fn">pagination_fn<a class="anchor" aria-label="anchor" href="#arg-pagination-fn"></a></dt>
+<dd><p>(<code>function</code>) A function that takes the previous response
+(<code>resp</code>) to generate the next request in a call to
+<code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code>. This function can usually be generated
+using one of the iteration helpers described in
+<code><a href="https://httr2.r-lib.org/reference/iterate_with_offset.html" class="external-link">httr2::iterate_with_offset()</a></code>. This function will be extracted from the
+request by <code><a href="req_perform_opinionated.html">req_perform_opinionated()</a></code> and passed on as <code>next_req</code> to
+<code><a href="https://httr2.r-lib.org/reference/req_perform_iterative.html" class="external-link">httr2::req_perform_iterative()</a></code>.</p></dd>
 
 
 <dt id="arg-parameter-name">parameter_name<a class="anchor" aria-label="anchor" href="#arg-parameter-name"></a></dt>
@@ -133,6 +133,16 @@ package (default <code>NULL</code>).</p></dd>
 a list or character vector with the path as one or more unnamed arguments
 (which will be concatenated with "/") plus named arguments to
 <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code> into the path.</p></dd>
+
+
+<dt id="arg-pkg-name">pkg_name<a class="anchor" aria-label="anchor" href="#arg-pkg-name"></a></dt>
+<dd><p>(<code>length-1 character</code>) The name of the calling package. This
+will usually be automatically determined based on the source of the call.</p></dd>
+
+
+<dt id="arg-pkg-url">pkg_url<a class="anchor" aria-label="anchor" href="#arg-pkg-url"></a></dt>
+<dd><p>(<code>length-1 character</code>) A url for information about the calling
+package (default <code>NULL</code>).</p></dd>
 
 
 <dt id="arg-query">query<a class="anchor" aria-label="anchor" href="#arg-query"></a></dt>
@@ -159,8 +169,8 @@ list of such objects (as returned by <code><a href="req_perform_opinionated.html
 
 
 <dt id="arg-resp-body-fn">resp_body_fn<a class="anchor" aria-label="anchor" href="#arg-resp-body-fn"></a></dt>
-<dd><p>A function to extract the body of the response. Default:
-<code><a href="resp_body_auto.html">resp_body_auto()</a></code>.</p></dd>
+<dd><p>(<code>function</code>) A function to extract the body of the
+response. Default: <code><a href="resp_body_auto.html">resp_body_auto()</a></code>.</p></dd>
 
 
 <dt id="arg-response-parser">response_parser<a class="anchor" aria-label="anchor" href="#arg-response-parser"></a></dt>
@@ -173,6 +183,16 @@ common. Set this to <code>NULL</code> to return the raw response from
 <dt id="arg-response-parser-args">response_parser_args<a class="anchor" aria-label="anchor" href="#arg-response-parser-args"></a></dt>
 <dd><p>(<code>list</code>) An optional list of arguments to pass to
 the <code>response_parser</code> function (in addition to <code>resp</code>).</p></dd>
+
+
+<dt id="arg-tidy-fn">tidy_fn<a class="anchor" aria-label="anchor" href="#arg-tidy-fn"></a></dt>
+<dd><p>(<code>function</code>) A function that will be invoked by <code><a href="resp_tidy.html">resp_tidy()</a></code>
+to tidy the response.</p></dd>
+
+
+<dt id="arg-tidy-args">tidy_args<a class="anchor" aria-label="anchor" href="#arg-tidy-args"></a></dt>
+<dd><p>(<code>list</code>) A list of additional arguments to pass to
+<code>tidy_fn</code>.</p></dd>
 
 
 <dt id="arg-url">url<a class="anchor" aria-label="anchor" href="#arg-url"></a></dt>

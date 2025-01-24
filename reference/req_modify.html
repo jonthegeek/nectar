@@ -47,7 +47,8 @@ path-specific properties.</p>
 <span>  query <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  body <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mime_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  method <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  method <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -92,28 +93,44 @@ the body. Some APIs allow you to leave this as NULL for them to guess.</p></dd>
 <dd><p>(<code>length-1 character</code>, optional) If the method is something
 other than <code>GET</code> or <code>POST</code>, supply it. Case is ignored.</p></dd>
 
+
+<dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
+<dd><p>(<code>environment</code>) The environment from which a function was called,
+e.g. <code><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">rlang::caller_env()</a></code> (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object.</p>
+    <p>A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object with additional class <code>nectar_request</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other opinionated request functions:
+<code><a href="req_init.html">req_init</a>()</code>,
+<code><a href="req_pagination_policy.html">req_pagination_policy</a>()</code>,
+<code><a href="req_prepare.html">req_prepare</a>()</code>,
+<code><a href="req_tidy_policy.html">req_tidy_policy</a>()</code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">req_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="req_init.html">req_init</a></span><span class="op">(</span><span class="st">"https://example.com"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">req_modify</span><span class="op">(</span><span class="va">req_base</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"specific/{path}"</span>, path <span class="op">=</span> <span class="st">"endpoint"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;nectar_request/httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span> https://example.com/specific/endpoint</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Options:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">useragent</span>: "httr2/1.1.0 r-curl/6.1.0 libcurl/8.5.0 nectar/0.0.0.9005</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">useragent</span>: "httr2/1.1.0 r-curl/6.2.0 libcurl/8.5.0 nectar/0.0.0.9005</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> (https://nectar.api2r.org)"</span>
 <span class="r-in"><span><span class="fu">req_modify</span><span class="op">(</span><span class="va">req_base</span>, query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"param1"</span> <span class="op">=</span> <span class="st">"value1"</span>, <span class="st">"param2"</span> <span class="op">=</span> <span class="st">"value2"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;nectar_request/httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span> https://example.com/?param1=value1&amp;param2=value2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Options:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">useragent</span>: "httr2/1.1.0 r-curl/6.1.0 libcurl/8.5.0 nectar/0.0.0.9005</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">useragent</span>: "httr2/1.1.0 r-curl/6.2.0 libcurl/8.5.0 nectar/0.0.0.9005</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> (https://nectar.api2r.org)"</span>
 </code></pre></div>
     </div>
