@@ -31,9 +31,14 @@ resp_tidy_json <- function(resp,
   subset_path <- stbl::to_chr(subset_path)
   result <- httr2::resp_body_json(resp)
   result <- purrr::pluck(result, !!!subset_path)
-  tibblify::tibblify(
-    result,
-    spec = spec,
-    unspecified = unspecified
-  )
+  if (length(result)) {
+    return(
+      tibblify::tibblify(
+        result,
+        spec = spec,
+        unspecified = unspecified
+      )
+    )
+  }
+  return(NULL)
 }

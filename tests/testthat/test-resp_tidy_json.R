@@ -86,3 +86,24 @@ test_that("resp_tidy_json works with resp_tidy", {
     target_tibble
   )
 })
+
+test_that("resp_tidy_json works with resp_tidy", {
+  source_tibble <- tibble::tibble(
+    a = letters, b = LETTERS, c = 1:26
+  )
+  mock_response <- httr2::response_json(
+    body = source_tibble
+  )
+  mock_response$request <- list(
+    policies = list(
+      resp_tidy = list(
+        tidy_fn = resp_tidy_json,
+        tidy_args = list(
+          subset_path = "d"
+        )
+      )
+    )
+  )
+  test_result <- expect_no_error(resp_tidy(mock_response))
+  expect_null(test_result)
+})
