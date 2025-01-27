@@ -1,4 +1,7 @@
-#' Title
+#' Extract and clean a JSON API response
+#'
+#' Parse the body of a response with [httr2::resp_body_json()], extract a named
+#' subset of that body, and tidy the result with [tibblify::tibblify()].
 #'
 #' @inheritParams .shared-params
 #' @param spec (`tspec` or `NULL`) A specification used by

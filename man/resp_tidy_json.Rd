@@ -2,7 +2,7 @@
 % Please edit documentation in R/resp_tidy_json.R
 \name{resp_tidy_json}
 \alias{resp_tidy_json}
-\title{Title}
+\title{Extract and clean a JSON API response}
 \usage{
 resp_tidy_json(resp, spec = NULL, unspecified = "list", subset_path = NULL)
 }
@@ -32,5 +32,6 @@ field such as \code{data}. If the desired part of the response body is in
 The tibblified response body.
 }
 \description{
-Title
+Parse the body of a response with \code{\link[httr2:resp_body_raw]{httr2::resp_body_json()}}, extract a named
+subset of that body, and tidy the result with \code{\link[tibblify:tibblify]{tibblify::tibblify()}}.
 }
