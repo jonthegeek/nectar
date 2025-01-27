@@ -53,6 +53,7 @@
 <url><loc>https://nectar.api2r.org/reference/resp_parse.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/resp_tidy.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/resp_tidy_json.html</loc></url>
+<url><loc>https://nectar.api2r.org/reference/resp_tidy_unknown.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/stabilize_string.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/url_normalize.html</loc></url>
 <url><loc>https://nectar.api2r.org/reference/url_path_append.html</loc></url>
