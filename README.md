@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![CRAN
 status](https://www.r-pkg.org/badges/version/nectar)](https://CRAN.R-project.org/package=nectar)
 [![Codecov test
-coverage](https://codecov.io/gh/jonthegeek/nectar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jonthegeek/nectar?branch=main)
+coverage](https://codecov.io/gh/jonthegeek/nectar/graph/badge.svg)](https://app.codecov.io/gh/jonthegeek/nectar)
 [![R-CMD-check](https://github.com/jonthegeek/nectar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jonthegeek/nectar/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
