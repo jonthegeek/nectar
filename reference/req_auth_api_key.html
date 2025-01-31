@@ -43,7 +43,14 @@ apply those keys to requests.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">req_auth_api_key</span><span class="op">(</span><span class="va">req</span>, <span class="va">...</span>, location <span class="op">=</span> <span class="st">"header"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">req_auth_api_key</span><span class="op">(</span></span>
+<span>  <span class="va">req</span>,</span>
+<span>  <span class="va">parameter_name</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  api_key <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"header"</span>, <span class="st">"query"</span>, <span class="st">"cookie"</span><span class="op">)</span>,</span>
+<span>  call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -54,17 +61,31 @@ apply those keys to requests.</p>
 <dd><p>(<code>httr2_request</code>) A <code><a href="https://httr2.r-lib.org/reference/request.html" class="external-link">httr2::request()</a></code> object.</p></dd>
 
 
+<dt id="arg-parameter-name">parameter_name<a class="anchor" aria-label="anchor" href="#arg-parameter-name"></a></dt>
+<dd><p>(<code>length-1 character</code>) The name of the parameter to use
+in the header, query, or cookie.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional parameters depending on the location of the API key.</p><ul><li><p><code>parameter_name</code> (<code>length-1 character</code>, "header" or "query" only) The name of the parameter to
-use in the header or query.</p></li>
-<li><p><code>api_key</code> (<code>length-1 character</code>, "header" or "query" only) The API key to use.</p></li>
-<li><p><code>path</code> (<code>length-1 character</code>, "cookie" only) The location of the cookie.</p></li>
-</ul></dd>
+<dd><p>These dots are for future extensions and must be empty.</p></dd>
+
+
+<dt id="arg-api-key">api_key<a class="anchor" aria-label="anchor" href="#arg-api-key"></a></dt>
+<dd><p>(<code>length-1 character</code> or <code>NULL</code>) The API key to use. If this
+value is <code>NULL</code>, <code>req</code> is returned unchanged.</p></dd>
 
 
 <dt id="arg-location">location<a class="anchor" aria-label="anchor" href="#arg-location"></a></dt>
 <dd><p>(<code>length-1 character</code>) Where the API key should be passed.
 One of <code>"header"</code> (default), <code>"query"</code>, or <code>"cookie"</code>.</p></dd>
+
+
+<dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
+<dd><p>(<code>environment</code>) The environment from which a function was called,
+e.g. <code><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">rlang::caller_env()</a></code> (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.</p></dd>
 
 </dl></div>
     <div class="section level2">
