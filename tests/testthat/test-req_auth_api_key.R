@@ -1,3 +1,23 @@
+test_that("req_auth_api_key errors informatively with unused arguments", {
+  expect_error(
+    {
+      req_auth_api_key(
+        httr2::request("https://example.com"),
+        location = "header",
+        api_key = "ok",
+        file_path = "bad"
+      )
+    },
+    class = "rlib_error_dots_nonempty"
+  )
+})
+
+test_that("req_auth_api_key returns req unchanged if no api_key set", {
+  req <- httr2::request("https://example.com")
+  test_result <- req_auth_api_key(req, "parm")
+  expect_identical(req, test_result)
+})
+
 test_that("req_auth_api_key works for header", {
   test_result <- req_auth_api_key(
     httr2::request("https://example.com"),
@@ -50,38 +70,15 @@ test_that("req_auth_api_key works for query", {
   )
 })
 
-test_that("req_auth_api_key errors informatively with unused arguments", {
-  expect_error(
-    {
-      req_auth_api_key(
-        httr2::request("https://example.com"),
-        location = "header",
-        api_key = "ok",
-        file_path = "bad"
-      )
-    },
-    class = "rlib_error_dots_nonempty"
+test_that("req_auth_api_key works for cookies", {
+  test_result <- req_auth_api_key(
+    httr2::request("https://example.com"),
+    parameter_name = "parm",
+    api_key = "my_key",
+    location = "cookie"
   )
-  expect_error(
-    {
-      req_auth_api_key(
-        httr2::request("https://example.com"),
-        location = "query",
-        api_key = "ok",
-        file_path = "bad"
-      )
-    },
-    class = "rlib_error_dots_nonempty"
-  )
-  expect_error(
-    {
-      req_auth_api_key(
-        httr2::request("https://example.com"),
-        location = "cookie",
-        api_key = "bad",
-        file_path = "ok"
-      )
-    },
-    class = "rlib_error_dots_nonempty"
+  expect_in(
+    test_result$options,
+    list(cookie = "parm=my_key")
   )
 })

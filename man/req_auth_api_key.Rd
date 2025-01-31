@@ -4,21 +4,34 @@
 \alias{req_auth_api_key}
 \title{Authenticate with an API key}
 \usage{
-req_auth_api_key(req, ..., location = "header")
+req_auth_api_key(
+  req,
+  parameter_name,
+  ...,
+  api_key = NULL,
+  location = c("header", "query", "cookie"),
+  call = rlang::caller_env()
+)
 }
 \arguments{
 \item{req}{(\code{httr2_request}) A \code{\link[httr2:request]{httr2::request()}} object.}
 
-\item{...}{Additional parameters depending on the location of the API key.
-\itemize{
-\item \code{parameter_name} (\verb{length-1 character}, "header" or "query" only) The name of the parameter to
-use in the header or query.
-\item \code{api_key} (\verb{length-1 character}, "header" or "query" only) The API key to use.
-\item \code{path} (\verb{length-1 character}, "cookie" only) The location of the cookie.
-}}
+\item{parameter_name}{(\verb{length-1 character}) The name of the parameter to use
+in the header, query, or cookie.}
+
+\item{...}{These dots are for future extensions and must be empty.}
+
+\item{api_key}{(\verb{length-1 character} or \code{NULL}) The API key to use. If this
+value is \code{NULL}, \code{req} is returned unchanged.}
 
 \item{location}{(\verb{length-1 character}) Where the API key should be passed.
 One of \code{"header"} (default), \code{"query"}, or \code{"cookie"}.}
+
+\item{call}{(\code{environment}) The environment from which a function was called,
+e.g. \code{\link[rlang:stack]{rlang::caller_env()}} (the default). The environment will be mentioned
+in error messages as the source of the error. This argument is particularly
+useful for functions that are intended to be called as utilities inside
+other functions.}
 }
 \value{
 A \code{\link[httr2:request]{httr2::request()}} object with additional class \code{nectar_request}.
